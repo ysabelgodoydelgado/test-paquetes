@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_product_catalog" name="report_product_catalog">
+        <t t-call="web.html_container">
+            <t t-call="deltatech_product_catalog.catalog_layout">
+                <div class="page" style="padding-top: 0px; margin-top: -10px; border:0px;">
+                    <style>
+                        .header{
+                            width: 100%;
+                            height: 100px;
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                        }
+                        img {
+                            max-width:100%;
+                        }
+
+                        .itemName {
+                            font-weight:bold;
+                            font-size: 14px;
+                            color: #e1332f;
+                            padding: 0px 5px 2px 5px;
+                            line-height: 16px;
+                            height: 48px;
+                            overflow:hidden;
+                        }
+
+                        .w100{
+                            width: 100% !important;
+                            border: none !important;
+                        }
+                        .card-catalog {
+                            width: 180px;
+                            display: inline-table;
+                            margin-left: 59px;
+                            margin-right: 59px;
+                            vertical-align: top;
+                            border: 2px solid #eeeeee;
+                            padding-top: 5px;
+                        }
+                        .block{
+                            width:100%;
+                        }
+                        .container-report{
+                            display: table;
+                        }
+                        .price{
+                            font-size: 12px;
+                            text-align: right;
+                            font-weight: 900;
+                            padding-right: 5px;
+                            color: white;
+                            line-height: 18px;
+                        }
+                        .price .symbol{
+                            color: #e1332f;
+                            margin-right:2px;
+                        }
+                        .image-block{
+                            height: 180px;
+                            overflow: hidden;
+                            display: table;
+                        }
+                        .portada{
+                            background: #e11c25;
+                            width: 100%;
+                            height: 700px;
+                        }
+                        .texto{
+                            font-size: 11px;
+                            line-height: 12px;
+                            overflow: hidden;
+                            height: 36px;
+                        }
+                        .itemImg{
+                            display:table-cell;
+                            vertical-align:middle;
+                            max-height: 180px;
+                            overflow: hidden;
+                            height: 180px;
+                        }
+                        .itemImg img{
+                            height: 180px !important;
+                            max-height: 180px !important;
+                        }
+                        
+                    </style>
+                    <div style="height: 1097px; width: 100%; background: #e11c25; border: 1px solid #e11c25; position: relative;">
+                        <div t-attf-style="margin: 0; position: absolute; top: 457px; left: 150px;">
+                            <img src="/deltatech_product_catalog/static/images/maxcam.png" width="600"/>
+                        </div>
+                    </div>
+                    <div class="container-report">
+                        <t t-foreach="docs" t-as="o">
+                            <div class="mt-4 mb-3 card-catalog">
+                                <div class="block">
+                                    <div class="itemName">
+                                        <t t-if="o.name">
+                                            <span class="card-text" t-field="o.name"/>
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="block" t-attf-style="background-image:url('/deltatech_product_catalog/static/images/linea.png'); height: 4px; width: 100%; background-size: 100% 4px; background-repeat:no-repeat; margin-top: 2px; margin-bottom: 2px;">
+                                </div>
+                                <div class="block texto" style="padding-left: 5px; padding-right: 5px;">
+                                    <t t-if="o.default_code">
+                                        Referencia interna: <span t-field="o.default_code"/><br/>
+                                    </t>
+                                    <t t-if="o.alternate_code">
+                                        Código Alterno: <span t-field="o.alternate_code"/><br/>
+                                    </t>
+                                    <t t-if="o.sales_policy">
+                                        Política de ventas: <span t-field="o.sales_policy"/>
+                                    </t>
+                                </div>
+                                
+                                <div class="block image-block">
+                                    <div
+                                        class="itemImg"
+                                        t-field="o.image_256"
+                                        t-options='{"widget": "image", "class": "img-thumbnail w100"}'
+                                    />
+                                </div>
+                                <div class="block" t-attf-style="background-image:url('/deltatech_product_catalog/static/images/price.png'); height: 21px; width: 100%; background-size: 100% 21px; background-repeat:no-repeat;">
+                                    <div class="price">
+                                        <t t-if="o.list_price">
+                                            <span class="symbol">$</span><span class="amount" t-field="o.list_price"/>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+    <template id="report_category_catalog" name="report_product_category_catalog">
+        <t t-call="deltatech_product_catalog.report_product_catalog"/>
+    </template>
+    <template id="catalog_layout">
+        <div class="header o_boxed_header" t-attf-style="height: 154px; width: 100%; overflow: hidden; position: relative; border-bottom:0px; border:0px;">
+            <div class="first-page" style="height: 20px; width: 100%;"></div>
+            <div class="first-page" style="height: 154px; width: 100%;background-color:#e11c25; margin-bottom:0px; padding-bottom: 0px;"></div>
+            <div class="not-first-page" style="background-image:url('/deltatech_product_catalog/static/images/header.png'); height: 155px; width: 100%; background-size: 100% 155px; background-repeat:no-repeat; border-bottom:0px; margin-bottom:0px; padding-bottom: 0px; position: absolute; top: 0px;"></div>
+        </div>
+        <div class="article" t-attf-style="margin-top: -20px; padding-top: 0px;">
+            <t t-raw="0"/>
+        </div>
+        <div class="footer" t-attf-style="height: 65px; width: 100%; overflow: hidden; position: relative; border:0px;">
+            <div class="first-page" style="background-color:#e11c25; height: 65px; width: 100%;"></div>
+            <div class="not-first-page" style="background-image:url('/deltatech_product_catalog/static/images/footer.png'); height: 65px; width: 100%; background-size: 100% 70px; background-repeat:no-repeat; position: absolute; top: 0px;"></div>
+        </div>
+        
+    </template>
+</odoo>

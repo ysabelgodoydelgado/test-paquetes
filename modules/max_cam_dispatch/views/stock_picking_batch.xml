@@ -1,0 +1,41 @@
+<odoo>
+    <data>
+
+        <record id="view_stock_picking_batch_seller" model="ir.ui.view">
+            <field name="name">stock.picking.batch.inherit.seller</field>
+            <field name="model">stock.picking.batch</field>
+            <field name="inherit_id" ref="max_cam_dispatch.view_stock_picking_batch_inh"/>
+            <field name="arch" type="xml">
+				<xpath expr="//field[@name='picking_ids']/tree/field[@name='partner_id']" position="after">
+                    <field name="seller_id" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+
+          <record id="vpicktree_inherit_seller" model="ir.ui.view">
+            <field name="name">vpicktree.picking.inherit.seller</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+				<xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="seller_id" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="maxcam_dispatch_stock_picking_batch_inherit_view_search" model="ir.ui.view">
+            <field name="name">maxcam.dispatch.stock.picking.batch.inherit.view.search</field>
+            <field name="model">stock.picking.batch</field>
+            <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <field name="insurer" string="Proveedor"/>
+                    <filter name="insurer" string="Proveedor" domain="[('insurer', '!=', False)]"/>
+                    <filter name="insurer_groupby" string="Proveedor" domain="[]" context="{'group_by': 'insurer'}" />
+                </xpath>
+            </field>
+        </record>  
+
+    </data>
+</odoo>

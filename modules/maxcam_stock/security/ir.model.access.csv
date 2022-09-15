@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_maxcam_stock_product_brand,maxcam_product_brand,model_product_brand,base.group_user,1,1,1,1
+access_maxcam_update_price_lot,maxcam_update_price_lot,model_update_price_lot,base.group_user,1,1,1,1
+access_maxcam_update_price_lot_lines,maxcam_update_price_lot_lines,model_update_price_lot_lines,base.group_user,1,1,1,1
+access_stock_picking_alter_location,access.stock.picking.alter.location,model_stock_picking_alter_location,base.group_user,1,1,1,1
+access_stock_picking_alter_location_line,access.stock.picking.alter.location.line,model_stock_picking_alter_location_line,base.group_user,1,1,1,1
+access_stock_alter_location_label,access.stock.alter.location.label,model_stock_alter_location_label,base.group_user,1,1,1,1
+access_move_alter_location_qtities_wizard,access.move.alter.location.qtities.wizard,model_move_alter_location_qtities_wizard,base.group_user,1,1,1,1

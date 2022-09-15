@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_tree_purchase_order_inherited_bin" model="ir.ui.view">
+        <field name="name">Purchase Order</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+        <field name="arch" type="xml">
+            <!-- ...match and extend elements here! ... -->
+            <field name="amount_total" position="after">
+                <field name="amount_exempt" />
+                <field name="amount_taxed" />
+            </field>
+        </field>
+        </record>
+
+        <record id="view_form_purchase_order_inherited_bin" model="ir.ui.view">
+        <field name="name">Purchase Order</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <!-- ...match and extend elements here! ... -->
+            <field name="amount_untaxed" position="after">
+                <field name="amount_exempt" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="amount_taxed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+            </field>
+
+        </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_message,Mensaje de confirmacion,model_wizard_message_maxcam_invoice_send,,1,1,1,1

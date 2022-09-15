@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.base.setup</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="100"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Versionado de aplicaciones" string="Versionado de aplicaciones" data-key="version">
+                    <div>
+                        <h2>Version Android</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Versión de aplicación en Android</span>
+                                    <div class="text-muted">
+                                        Ingresa la versión de la aplicación en Android
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16 row">
+                                            <label for="android_version" string="Versión" class="col-3 col-lg-3 o_light_label"/>
+                                            <field name="android_version" class="oe_inline" required="1"/>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>Version iOS</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Versión de aplicación en iOS</span>
+                                    <div class="text-muted">
+                                        Ingresa la versión de la aplicación en iOS
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16 row">
+                                            <label for="ios_version" string="Versión" class="col-3 col-lg-3 o_light_label"/>
+                                            <field name="ios_version" class="oe_inline" required="1"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

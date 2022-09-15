@@ -1,0 +1,12 @@
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        &lt;!&ndash; Add a shortcut to wishlist / talks after registration &ndash;&gt;
+        <template id="report_report_simple_label_maxcam" inherit_id="product.report_simple_label">
+
+        </template>
+
+    </data>
+</odoo>
+-->

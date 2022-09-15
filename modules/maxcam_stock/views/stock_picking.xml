@@ -1,0 +1,56 @@
+<odoo>
+    <data>
+
+        <record id="view_picking_maxcam_stock_form_inherited" model="ir.ui.view">
+            <field name="name">stock.picking.maxcam.stock.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='backorder_id']" position="after">
+				    <field name="sale_note"/>
+				</xpath>
+                <!-- Imprimir Etiqueta -->
+                <!--<xpath expr="//header" position="inside">
+				    <button name="do_print_tag" string="Etiqueta" type="object" class="oe_highlight"/>
+				</xpath>-->
+
+                <xpath expr="//page[@name='operations']/field[@name='move_ids_without_package']/tree/field[@name='reserved_availability']"
+                       position="replace">
+
+                    <field name="reserved_availability"
+                           string="Reservado"/><!--attrs="{'column_invisible': (['|','|', ('parent.state','=', 'done'), ('parent.picking_type_code', 'in', ['incoming', 'outgoing']), ('parent.immediate_transfer', '=', True)])}"-->
+
+                </xpath>
+                <xpath expr="//page[@name='operations']/field[@name='move_ids_without_package']/form/group/field[@name='reserved_availability']"
+                       position="replace">
+
+                    <field name="reserved_availability"
+                           string="Reservado"/><!--attrs="{'column_invisible': (['|','|', ('parent.state','=', 'done'), ('parent.picking_type_code', 'in', ['incoming', 'outgoing']), ('parent.immediate_transfer', '=', True)])}"-->
+
+                </xpath>
+                <xpath expr="//page[@name='operations']/field[@name='move_ids_without_package']/tree/field[@name='reserved_availability']"
+                       position="replace">
+
+                    <field name="reserved_availability"
+                           string="Reservado"/><!--attrs="{'column_invisible': (['|','|', ('parent.state','=', 'done'), ('parent.picking_type_code', 'in', ['incoming', 'outgoing']), ('parent.immediate_transfer', '=', True)])}"-->
+
+                </xpath>
+                <xpath expr="//page[@name='operations']/field[@name='move_ids_without_package']/form/group/field[@name='forecast_availability']"
+                       position="attributes">
+
+                    <attribute name="string">Pronosticado</attribute>
+
+                </xpath>
+                <xpath expr="//page[@name='operations']/field[@name='move_ids_without_package']/tree/field[@name='forecast_availability']"
+                       position="attributes">
+
+                    <attribute name="string">Pronosticado</attribute>
+
+                </xpath>
+
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

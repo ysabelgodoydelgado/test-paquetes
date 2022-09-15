@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_purchasequotation_document_maxcam" inherit_id="purchase.report_purchasequotation_document">
+
+            <!-- alternte code THEAD -->
+            <xpath expr="//th[@name='th_description']" position="after">
+                <th name="th_alternate_code"><strong>Codigo Alterno</strong></th>
+            </xpath>
+            <!-- TBODY -->
+            <xpath expr="//td[@id='product']" position="after">
+                <td id="product_alternate_code">
+                    <span t-field="order_line.alternate_code"/>
+                </td>
+            </xpath>
+            <xpath expr="//span[@t-field='order_line.product_qty']" position="replace">
+                <t t-set="product_qty" t-value="order_line.product_qty"/>
+                <span t-esc="int(product_qty)"/>
+            </xpath>
+
+        </template>
+    </data>
+</odoo>

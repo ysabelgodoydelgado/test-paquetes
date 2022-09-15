@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_order_form_view_inherited_hide_invoice_buttom_no_admin" model="ir.ui.view">
+            <field name="name">Oculta boton factura desde ventas para no administradores</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr='//button[@name="%(sale.action_view_sale_advance_payment_inv)d"][1]' position='attributes'>
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr='//button[@name="%(sale.action_view_sale_advance_payment_inv)d"][2]' position='attributes'>
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <!--<button name="%(sale.action_view_sale_advance_payment_inv)d" position="attributes">
+				    <attribute name="groups">base.group_system</attribute>
+			    </button>-->
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

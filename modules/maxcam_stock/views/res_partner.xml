@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_partner_product_brand" model="ir.ui.view">
+            <field name="name">Supplier brands</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <!-- Product brand ids -->
+                <xpath expr="//page[@name='sales_purchases']/group[@name='container_row_2']" position="inside">
+                        <group string="Supplier brands" name="brands" priority="10">
+                            <field name="product_brand_ids" widget="one2many" context="{'default_partner_id': active_id}" nolabel="1">
+                                <tree editable="bottom" limit="10">
+                                    <field name="name" />
+                                    <field name="partner_id" invisible="1" />
+                                    <field name="active" widget="boolean_toggle"/>
+                                </tree>
+                            </field>
+                        </group>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="maxcam_inventory_page" model="res.groups">
+        <field name="name">Pestaña de inventario</field>
+    </record>
+</odoo>

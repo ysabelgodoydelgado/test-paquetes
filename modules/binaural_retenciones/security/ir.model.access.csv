@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_retention_venezuela_configurate,Configuraciones Generales,model_retention_venezuela_configurate,,1,1,1,1
+access_retention_venezuela_withholding,Porcentaje de retencion de iva,model_retention_venezuela_withholdings,,1,1,1,1
+access_master_type_person,Tipo de Persona,model_master_type_person,,1,1,1,1

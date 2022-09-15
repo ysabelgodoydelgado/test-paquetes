@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Add a shortcut to wishlist / talks after registration -->
+        <template id="report_delivery_document_maxcam" inherit_id="stock.report_delivery_document">
+            <!-- page 1 -->
+            <xpath expr="//t[@t-call='web.external_layout']" position="attributes">
+                <attribute name="t-call">web.basic_layout</attribute>
+            </xpath>
+            <!-- quitar decimales -->
+            <xpath expr="//span[@t-field='move.product_uom_qty']" position="replace">
+                <span t-esc="int(move.product_uom_qty)"/>
+            </xpath>
+
+            <xpath expr="//span[@t-field='bo_line.product_uom_qty']" position="replace">
+                <span t-esc="int(bo_line.product_uom_qty)"/>
+            </xpath>
+
+
+            <!--reemplazar seccion-->
+            <xpath expr="//table[@name='stock_move_table']" position="replace">
+            <table class="table table-sm" t-if="o.state!='done'" name="stock_move_table">
+                        <thead>
+                            <tr>
+                                <th name="th_sm_product"><strong>Producto</strong></th>
+                                <th name="th_sm_quantity"><strong>Cantidad Pedida</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="lines" t-value="o.move_lines.filtered(lambda x: x.product_uom_qty and x.reserved_availability >0)"/>
+                            <tr t-foreach="lines" t-as="move">
+                                <td>
+                                    <span t-field="move.product_id"/>
+                                    <!--<p t-if="move.description_picking != move.product_id.name">
+                                        <span t-field="move.description_picking"/>
+                                    </p>-->
+                                </td>
+
+                                <td>
+                                    <span t-field="move.product_id.alternate_code"/>
+                                </td>
+                                <td>
+                  
+                                    
+                                    <span t-field="move.reserved_availability" />
+                                    
+                                </td>
+                                <td>
+                                    <span t-field="move.product_uom_qty"/>
+                                    <span t-field="move.product_uom"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                </table>
+            </xpath>
+
+            <!-- Codigo alterno -->
+            <xpath expr="//table[@name='stock_move_table']/thead/tr/th[@name='th_sm_product']" position="after">
+                <th name="th_sm_alternate_code">
+                    <strong>Código Alterno</strong>
+                </th>
+                <th name="th_sm_forecast_availability">
+                    <strong>Reservado</strong>
+                </th>
+            </xpath>
+            <!--<xpath expr="//table[@name='stock_move_table']/tbody/tr/td[1]" position="after">
+                <td>
+                    <span t-field="move.product_id.alternate_code"/>
+                </td>
+                <td>
+                  
+                    
+                    <span t-field="move.reserved_availability" />
+                    
+                </td>
+            </xpath>-->
+
+            <!-- codigo alterno TH-->
+            <xpath expr="//table[@name='stock_move_line_table']/thead/tr/th[@name='th_sml_product']" position="after">
+                <th name="th_sml_alternate_code">
+                    <strong>Código Alterno</strong>
+                </th>
+            </xpath>
+
+            <!--   <xpath expr="//table[@name='stock_backorder_table']/thead/tr/th[@name='th_sb_product']" position="after">
+                   <th name="th_sb_alternate_code"><strong>Código Alterno2</strong></th>
+               </xpath>-->
+
+            <!-- partner_header -->
+            <xpath expr="//t[@name='partner_header']" position="replace">
+                <t class="text-nowrap" name="partner_header">
+                    <!-- AQUI MARGIN TOP NEGATIVO -->
+                    <div t-esc="partner" style="font-size:11px;text-transform: capitalize;"
+                         t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": true, "no_tag_br": True}'/>
+                </t>
+            </xpath>
+            <xpath expr="//div[hasclass('page')]/h2" position="replace">
+                <h6>
+                    <span t-field="o.name"/>
+                </h6>
+            </xpath>
+            <xpath expr="//div[hasclass('page')]" position="attributes">
+                <attribute name="style">font-size:11px;</attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('page')]" position="inside">
+                <p t-field="o.note"/>
+            </xpath>
+            <!--Reemplazar el nombre "Nro Presupuesto" por "Pedido"-->
+            <xpath expr="//div[@name='div_origin']/strong" position="replace">
+                <strong>Pedido:</strong>
+            </xpath>
+            <!-- Remover el campo de Shipping Date-->
+            <xpath expr="//div[@name='div_sched_date']" position="attributes">
+                <attribute name="class">d-none</attribute>
+            </xpath>
+
+        </template>
+
+
+
+
+        <template id="stock_report_delivery_has_serial_move_line_maxcam"
+                  inherit_id="stock.stock_report_delivery_has_serial_move_line">
+            <!-- Codigo alterno TD -->
+            <xpath expr="//td[1]" position="after">
+                <td>
+                    <span t-field="move_line.product_id.alternate_code"/>
+                </td>
+            </xpath>
+        </template>
+
+        <template id="stock_report_delivery_aggregated_move_lines_maxcam"
+                  inherit_id="stock.stock_report_delivery_aggregated_move_lines">
+            <!-- Codigo alterno TD -->
+            <xpath expr="//tr/td[1]" position="after">
+                <td>
+                    <span t-esc="aggregated_lines[line]['product']['alternate_code']"/>
+                </td>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

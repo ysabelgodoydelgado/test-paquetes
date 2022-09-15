@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+
+        <!--<record id="product_template_only_form_view_product_button_header_onhandcheck" model="ir.ui.view">
+            <field name="name">product.template.form.inherit.button.header</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+            <field name="arch" type="xml">
+                
+                <xpath expr="//button[@name='action_open_quants']" position="before">
+                    <button type="object" name="button_dummy_check" attrs="{'invisible':[('type', '!=', 'product')]}"
+                            class="oe_stat_button"
+                            icon="fa-cube"
+                            groups="base.group_system">
+                        <div class="o_field_widget o_stat_info" name="button_available_qty_after">
+                            <span class="o_stat_value" widget="statinfo">
+                                <field name="qty_available_after_check" widget="statinfo" nolabel="1" class="mr4"/>
+                                <field name="uom_name"/>
+                                
+                                
+                            </span>
+                            <span class="o_stat_text">A Mano Chequeadas</span>
+                        </div>
+                    </button>
+                    
+                    <button type="object" name="button_dummy_check" attrs="{'invisible':[('type', '!=', 'product')]}"
+                            class="oe_stat_button"
+                            icon="fa-cube">
+                        <div class="o_field_widget o_stat_info" name="button_available_qty_checked">
+                            <span class="o_stat_value" widget="statinfo">
+                                
+                                <field name="qty_on_hand_checked" widget="statinfo" nolabel="1" class="mr4"/>
+                                <field name="uom_name"/>
+                                
+                            </span>
+                            <span class="o_stat_text">Chequeadas</span>
+                        </div>
+                    </button>
+
+                </xpath>
+
+
+            </field>
+        </record>
+
+
+
+        <record id="product_template_tree_view_inherit_maxcam_stock_onhandcheck" model="ir.ui.view">
+            <field name="name">product.template.form.inherit.maxcam.stock</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="qty_available_after_check" />
+                    <field name="qty_on_hand_checked" />
+                </xpath>
+            </field>
+        </record>
+-->
+    </data>
+</odoo>

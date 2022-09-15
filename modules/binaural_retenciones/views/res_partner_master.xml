@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id="view_form_res_partner_inherited_master" model="ir.ui.view">
+        <field name="name">Extension de cliente</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- ...match and extend elements here! ... -->
+
+            <field name="vat" position="replace">
+                <label id="vat_label" for="vat" string="Rif"/>
+                <div id="vat" class="vat_class oe_inline">
+                    <field name="prefix_vat"/>
+                    <field name="vat"/>
+                </div>
+            </field>
+
+
+            <div id="vat" position="after">
+                <!--<field name="type_person_ids" domain="[('status','=',True)]" attrs="{'required':['|',('supplier_rank','>', 0),('customer_rank','>',0)],'invisible':[('supplier_rank','>', 0),('customer_rank','=',0)]}" />&lt;!&ndash;was True&ndash;&gt;
+                <field   name="withholding_type" attrs="{'required':[('supplier_rank','>', 0)],'invisible':[('supplier_rank','=', 0),('customer_rank','=',0)]}"/>-->
+                <!-- mientras se soluciona el problema de cliente/proveedor -->
+                <field name="type_person_ids" domain="[('status','=',True)]" />
+                <field name="withholding_type" />
+                <field name="taxpayer" />
+            </div>
+
+
+            <field name="lang" position="replace">
+                <field name="lang" invisible="1"/>
+            </field>
+
+            <div class="o_address_format" position="after">
+                <field name="business_name"/>
+            </div>
+
+            <field name="category_id" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+
+            <!-- ...match and extend elements here! ... -->
+            <field name="vat" position="after">
+                <field name="customer_rank" invisible="1"/>
+                <field name="supplier_rank" invisible="1"/>
+            </field>
+
+            <page name="sales_purchases" position="after">
+                <page name='retention' string="Retenciones" attrs="{'invisible':[('supplier_rank','>',0),('customer_rank','=',0)]}">
+                    <group>
+                        <group>
+                            <field name="iva_retention" string="Retención de IVA" attrs="{'required':[('supplier_rank','=', 0)]}"/>
+                            <field name="supplier_iva_retention" attrs="{'invisible':['|',('supplier_rank','=', 0),('exempt_iva','=',True)]}"/>
+                            <field name="exempt_iva" />
+                        </group>
+                        <group>
+                            <field name="islr_retention" string="Retención de ISLR" attrs="{'required':[('supplier_rank','=', 0)]}" />
+                            <field name="supplier_islr_retention" attrs="{'invisible':['|',('supplier_rank','=', 0),('exempt_islr','=',True)]}"/>
+                            <field name="exempt_islr"/>
+                        </group>
+                   </group>
+                </page>
+            </page>
+
+            <xpath expr="//field[@name='islr_retention']" position="attributes">
+                <attribute name="attrs">
+                    {
+                        'required':[('supplier_rank','=', 0),('exempt_islr', '=', False)],
+                        'invisible': ['|', ('customer_rank', '=', 0),('exempt_islr', '=', True)]
+                    }
+                </attribute>
+            </xpath>
+            
+            <xpath expr="//field[@name='iva_retention']" position="attributes">
+                <attribute name="attrs">
+                    {
+                        'required':[('supplier_rank','>', 0),('exempt_iva', '=', False)],
+                        'invisible': ['|', ('customer_rank', '=', 0),('exempt_iva', '=', True)]
+                    }
+                </attribute><!--ojo customer-->
+            </xpath>
+
+        </field>
+    </record>
+
+    </data>
+</odoo>

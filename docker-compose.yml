@@ -1,0 +1,41 @@
+# Need Docker-compouse V1.18 or latest
+version: '3.5'
+services:
+  maxcam_web:
+    container_name: maxcam
+    build:
+      context: .
+    command: odoo -u maxcam_account --dev=reload
+    # command: --test-enable --log-level=test --stop-after-init -d maxcam -i all
+    # networks:
+    #   - maxcam_maxcam_net
+    ports:
+      - "10000:8069"
+    # tty: true
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./enterprise:/mnt/extra-addons
+      - ./modules:/mnt/custom-addons
+      - ./config/:/etc/odoo/
+      #- ./core:/usr/lib/python3/dist-packages/odoo/addons
+    depends_on:
+      - db-integra14
+    environment:
+      - PYTHONUNBUFFERED=0
+    restart: unless-stopped
+  db-integra14:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo-db-maxcam:/var/lib/postgresql/data/pgdata
+    
+networks:
+  maxcam_maxcam_net:
+    external: true
+volumes:
+  odoo-web-data:
+  odoo-db-maxcam:

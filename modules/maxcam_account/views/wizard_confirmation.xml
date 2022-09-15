@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		<!--wizard confirmacion en caso de peso > capacidad-->
+				<record id="wizard_message_max_cam_invoice_send" model="ir.ui.view">
+					<field name="name">wizard.message.maxcam.invoice.send</field>
+					<field name="model">wizard.message.maxcam.invoice.send</field>
+					<field name="arch" type="xml">
+						<form string="Información">
+						
+								<h6>
+									<field name="msg" readonly="1"/>
+								</h6>
+							
+						
+
+							<footer>
+								<button string='Aceptar' name="button_confirm_alert" type="object" class="btn-primary"/>
+								<!--<button string="Cancel" class="btn-secondary" special="cancel"/>-->
+							</footer>
+					</form>
+					</field>
+				</record>
+
+				<record id="wizard_message_max_cam_invoice_send_alert" model="ir.actions.act_window">
+					<field name="name">Información</field>
+					<field name="res_model">wizard.message.maxcam.invoice.send</field>
+					<field name="view_mode">form</field>
+					<field name="view_id" ref="wizard_message_max_cam_invoice_send"/>
+					<field name="target">new</field>
+				</record>
+
+
+    </data>
+</odoo>		

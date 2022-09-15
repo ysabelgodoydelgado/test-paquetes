@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_product_catalog" name="report_product_catalog">
+        <t t-call="web.html_container">
+            <t t-call="deltatech_product_catalog.catalog_layout">
+                <div class="page">
+                    <!-- <style>
+                         .row{
+                             display: -webkit-box;
+                             display: -webkit-flex;
+                             display: flex;
+                             -webkit-flex-wrap: wrap;
+                             flex-wrap: wrap;
+                             margin-right: -15px;
+                             margin-left: -15px;
+                         }
+                         .card-catalog {
+                             position: relative;
+                             display: -ms-flexbox;
+                             display: flex;
+                             -ms-flex-direction: column;
+                             flex-direction: column;
+                             min-width: 0;
+                             word-wrap: break-word;
+                             background-color: #fff;
+                             background-clip: border-box;
+                             border: 2px solid rgba(0,0,0,.25);
+                             border-radius: .25rem;
+                             overflow: hidden;
+                         }
+                         .card-img-top {
+                             width: 100%;
+                             border-top-left-radius: calc(.25rem - 1px);
+                             border-top-right-radius: calc(.25rem - 1px);
+                         }
+                         .card-img-top img {
+                             height: 10rem;
+                         }
+                         .card-body {
+                             -ms-flex: 1 1 auto;
+                             flex: 1 1 auto;
+                             padding: 0.25rem;
+                         }
+                         .card-text{
+                           text-overflow: ellipsis;
+                           white-space: nowrap;
+                           overflow: hidden;
+                         }
+                         .card-text:last-child {
+                             margin-bottom: 0;
+                         }
+                         .card-product {
+                             width: 23%;
+                             height: 16rem;
+                             display: inline-block;
+                             margin: 4px 8px;
+                             padding: 1%;
+                             text-align: center;
+                         }
+                     </style>
+                     <div class="container">
+                         <div class="row">
+                             <div class="col-5">
+                                 <div>
+                                     <strong>Company</strong>
+                                 </div>
+                                 <strong t-field="res_company.partner_id.name" />
+                                 <div>
+                                     <strong>Address:</strong>
+                                     <address
+                                         t-field="res_company.partner_id"
+                                         t-options='{"widget": "contact", "fields": ["address","phone", "fax"], "no_marker": false, "no_tag_br": true}'
+                                     />
+                                 </div>
+                             </div>
+                         </div>
+                         <div class='row mt32 mb32'>
+                             <t t-foreach="docs" t-as="o">
+                                 <div class="card-catalog card-product">
+                                     <div
+                                         class="card-img-top rounded mx-auto d-block"
+                                         t-field="o.image_1920"
+                                         t-options='{"widget": "image"}'
+                                     />
+                                     <div class="card-body">
+                                         <div class="badge text-wrap" >
+                                             <p>
+                                                 <t t-if="o.default_code">
+                                                     <span class="card-text" t-field="o.default_code" />
+                                                 </t>
+                                                 -
+                                                 <t t-if="o.alternate_code">
+                                                     <span class="card-text" t-field="o.alternate_code" />
+                                                 </t>
+                                             </p>
+                                         </div>
+                                         <div class="badge text-wrap" >
+                                             <p>
+                                                 <t t-if="o.name">
+                                                     <span class="card-text" t-field="o.name" />
+                                                 </t>
+                                             </p>
+                                         </div>
+                                         <div class="badge text-wrap" >
+                                             <p>
+                                                 <t t-if="o.list_price">
+                                                     <span class="card-text" t-field="o.list_price" />
+                                                 </t>
+                                                 -
+                                                 <t t-if="o.sales_policy">
+                                                     <span class="card-text" t-field="o.sales_policy" />
+                                                 </t>
+                                             </p>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </t>
+                         </div>
+                     </div>-->
+                    <style>
+                        img {
+                        max-width:100%;
+                        }
+
+                        .item {
+                        margin: 5px 0;
+                        padding: 5px;
+                        //height: 50px
+                        }
+
+                        .itemName {
+                        font-weight:bold;
+                        font-size: 20px;
+                        }
+
+                        .descToggle {
+                        margin: 10px 0;
+                        width:100%;
+                        }
+
+                        .plus::after {
+                        content: "+";
+                        font-weight:bold;
+                        }
+                        .minus::after {
+                        content: "-";
+                        font-weight:bold;
+                        }
+                        .w100{
+                        width:100px !important;
+                        height:103px !important;
+                        border: none !important;
+                        }
+                        .card-catalog {
+                             position: relative;
+                             display: -ms-flexbox;
+                             display: flex;
+                             -ms-flex-direction: column;
+                             flex-direction: column;
+                             min-width: 0;
+                             word-wrap: break-word;
+                             background-color: #fff;
+                             background-clip: border-box;
+                             border: 2px solid rgba(0,0,0,.25);
+                             border-radius: .25rem;
+                             overflow: hidden;
+                         }
+
+                    </style>
+                    <div class="container-fluid">
+                        <t t-foreach="docs" t-as="o">
+                            <div class="row mt-3 mb-3 card-catalog">
+                                <div class="item col-12">
+                                    <div class="col-2 float-left d-flex justify-content-center">
+                                        <div
+                                                class="itemImg"
+                                                t-field="o.image_512"
+                                                t-options='{"widget": "image", "class": "img-thumbnail w100"}'
+                                        />
+                                    </div>
+                                    <div class="col-3 float-right text-right">
+                                        <div>Precio:
+                                            <t t-if="o.list_price">
+                                                <span t-field="o.list_price"/>
+                                            </t>
+                                        </div>
+                                        <div class="price">
+                                            Política de ventas:
+                                            <t t-if="o.sales_policy">
+                                                <span t-field="o.sales_policy"/>
+                                            </t>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 float-right">
+                                        <div class="itemName">
+                                            <t t-if="o.name">
+                                                <span class="card-text" t-field="o.name"/>
+                                            </t>
+                                        </div>
+                                        <div>
+                                            <u>Referencia Interna:</u>
+                                            <t t-if="o.default_code">
+                                                <span class="card-text" t-field="o.default_code"/>
+                                            </t>
+                                        </div><!--<div>Detection > Gas Detection > Gas Detection Kits > Single Meter Kits|Detection > Gas Detection > Multi Gas Monitors</div>-->
+                                        <div>
+                                            <u>Codigo Alterno:</u>
+                                            <t t-if="o.alternate_code">
+                                                <span class="card-text" t-field="o.alternate_code"/>
+                                            </t>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+    <template id="report_category_catalog" name="report_product_category_catalog">
+        <t t-call="deltatech_product_catalog.report_product_catalog"/>
+    </template>
+    <template id="catalog_layout">
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc"/>
+        </t>
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id.sudo()"/>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"/>
+        </t>
+        <div class="header o_boxed_header">
+            <div class="row mb8">
+                <div class="col-6">
+                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)"/>
+                </div>
+                <div class="col-6 text-right mb4">
+                    <h4 class="mt0" t-field="company.report_header"/>
+                    <div name="company_address" class="mb4">
+                        <span
+                                style="color: #000;font-color:#000000;"
+                                class="company_address"
+                                t-field="company.partner_id"
+                                t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'
+                        />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="article o_report_layout_background">
+            <t t-raw="0"/>
+        </div>
+        <div class="footer mt-5">
+            <div class="text-center sticky-top">
+                <!--<ul class="list-inline">
+                    <li t-if="company.phone">
+                        Phone:
+                        <span t-field="company.phone"/>
+                    </li>
+                    <li t-if="company.email">
+                        Email:
+                        <span t-field="company.email"/>
+                    </li>
+                    <li t-if="company.website">
+                        Web:
+                        <span t-field="company.website"/>
+                    </li>
+                    <li t-if="company.vat">
+                        <t t-esc="company.country_id.vat_label or 'TIN'"/>
+                        :
+                        <span t-field="company.vat"/>
+                    </li>
+                </ul>
+                <div name="financial_infos">
+                    <span t-field="company.report_footer"/>
+                </div>-->
+                <div class="text-muted">
+                    Page:
+                    <span class="page"/>
+                    /
+                    <span class="topage"/>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>

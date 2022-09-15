@@ -1,0 +1,131 @@
+<odoo>
+    <data>
+
+        <record id="maxcam_seller_view_form_inherit" model="ir.ui.view">
+            <field name="name">maxcam.seller.account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <!-- reception_date -->
+                <xpath expr="//field[@name='invoice_user_id']" position="after">
+                    <field name="seller_id" readonly="1"/>
+                    <field name="last_payment_date" invisible="1"/>
+                    <field name="cash_reconcile_date"/>
+
+                    <div class="oe_button_box d-none" name="button_box">
+                        <button name="set_dates_maxcam_1" type="object" class="oe_stat_button" icon="fa-"
+                                groups="base.group_system">
+                            <span>fechas 1</span>
+                        </button>
+                        <button name="set_dates_maxcam_2" type="object" class="oe_stat_button" icon="fa-"
+                                groups="base.group_system">
+                            <span>fechas 2</span>
+                        </button>
+                        <button name="set_dates_maxcam_3" type="object" class="oe_stat_button" icon="fa-"
+                                groups="base.group_system">
+                            <span>fechas 3</span>
+                        </button>
+                        <button name="set_dates_maxcam_4" type="object" class="oe_stat_button" icon="fa-"
+                                groups="base.group_system">
+                            <span>fechas 4</span>
+                        </button>
+                    </div>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="seller_account_invoice_filter_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.select.inherit.account_3way_match</field>
+            <field name="mode">primary</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='duedate']" position='after'>
+                    <separator/>
+                    <filter name="group_seller_id" string="Seller" context="{'group_by':'seller_id'}"/>
+                    <separator/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="seller_view_out_invoice_tree" model="ir.ui.view">
+            <field name="name">seller.account.out.invoice.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='amount_total_signed']" position="before">
+                    <!--                    <field name="commission" widget="percentpie"/>-->
+                    <button name="action_show_invoice_resume" icon="fa-list" string="Comisiones" type="object"/>
+                    <field name="total_commission" widget="monetary"/>
+                    <field name="commission_discount"/>
+                    <field name="discount_invoice" widget="many2many_tags"/>
+                </xpath>
+                <xpath expr="//field[@name='invoice_date']" position="after">
+                    <field name="reception_date_client"/>
+                    <field name="last_payment_date"/>
+                    <field name="cash_reconcile_date" invisible="1"/>
+
+                    <field name="collection_days"/>
+                    <field name="invoice_payment_term_id"/>
+                    <field name="invoice_date_due"/>
+                </xpath>
+
+                <xpath expr="//field[@name='amount_total_signed']" position="after">
+                    <field name="paid_seller" widget="badge" decoration-muted="paid_seller == 'not_paid'"
+                           decoration-success="paid_seller == 'paid'" decoration-info="paid_seller == 'process'"
+                           optional="show"/>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="invoice_origin"/>
+                    <field name="seller_id"/>
+                </xpath>
+
+                <!-- Hidden Fields -->
+                <xpath expr="//field[@name='invoice_date_due']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='activity_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='amount_untaxed_signed']" position="attributes">
+                    <attribute name="invisible">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='company_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <!-- Empleados -->
+        <record id="seller_action_move_out_invoice_type" model="ir.actions.act_window">
+            <field name="name">Invoices by Seller</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="seller_view_out_invoice_tree"/>
+            <field name="search_view_id" ref="seller_account_invoice_filter_inherit"/>
+            <field name="domain">[('move_type', '=', 'out_invoice'),('payment_state', 'in', ['paid', 'in_payment'])]
+            </field>
+            <field name="context">{'default_move_type': 'out_invoice', 'search_default_group_seller_id': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    View seller commission invoices
+                </p>
+                <p>
+                    keep track of invoices with your customers and commission for sellers.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="account_employee" name="Employee" parent="account_accountant.menu_accounting" sequence="6"/>
+        <menuitem id="seller_account" parent="maxcam_seller.account_employee"
+                  action="seller_action_move_out_invoice_type"
+                  sequence="1"/>
+
+        <!-- comisiones del vendedor -->
+    </data>
+</odoo>

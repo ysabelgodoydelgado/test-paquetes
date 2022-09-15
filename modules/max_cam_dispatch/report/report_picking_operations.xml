@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Add a shortcut to wishlist / talks after registration -->
+        <template id="report_picking_operations_maxcam_dispatch" inherit_id="stock.report_picking">
+            <!-- invoice rel -->
+            <xpath expr="//div[@name='div_origin']" position="after">
+                <div t-if="o.invoice_rel" class="col-auto" name="div_invoice_rel">
+                    <strong>Facturas:</strong>
+                    <p t-field="o.invoice_rel"/>
+                </div>
+            </xpath>
+
+        </template>
+
+    </data>
+</odoo>

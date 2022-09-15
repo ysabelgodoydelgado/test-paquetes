@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Add a shortcut to wishlist / talks after registration -->
+        <template id="report_picking_operations_maxcam" inherit_id="stock.report_picking">
+            <!-- Seller -->
+            <!-- quitar decimales -->
+            <xpath expr="//span[@t-field='ml.product_uom_qty']" position="replace">
+                <span t-if="o.state != 'done'" t-esc="int(ml.product_uom_qty)"/>
+            </xpath>
+            <xpath expr="//span[@t-field='ml.qty_done']" position="replace">
+                <span t-if="o.state == 'done'" t-esc="int(ml.qty_done)"/>
+            </xpath>
+
+            <!-- Codigo alterno -->
+            <xpath expr="//th[@name='th_serial_number']" position="replace">
+                <th name="th_alternate_code" class="text-center">
+                   <strong>Código Alterno</strong>
+                </th>
+            </xpath>
+
+            <xpath expr="///tbody/t/t/tr/td[@t-if='has_serial_number']" position="replace">
+                <td class=" text-center">
+                    <span t-field="ml.product_id.alternate_code"/><br/>
+                </td>
+            </xpath>
+
+            <!--Reemplazar el nombre "Nro Presupuesto" por "Pedido"-->
+            <xpath expr="//div[@name='div_origin']/strong" position="replace">
+                <strong>Pedido:</strong>
+            </xpath>
+            <!-- Remover el campo de Shipping Date-->
+            <xpath expr="//div[@name='div_sched_date']" position="attributes">
+                <attribute name="class">d-none</attribute>
+            </xpath>
+
+        </template>
+
+    </data>
+</odoo>

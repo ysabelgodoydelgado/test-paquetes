@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+
+        <record id="stock_picking_batch_form_invoice" model="ir.ui.view">
+            <field name="name">stock.picking.batch.form.invoice</field>
+            <field name="model">stock.picking.batch</field>
+            <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page/field[@name='picking_ids']/tree/field[@name='origin']" position="before">
+                    <field name="invoice_ids" widget="many2many_tags" />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="assign_commission_image_to_picking_cron" model="ir.cron">
+        <field name="name">Cron para generar o asociar imagen de comisión a los OUT.</field>
+        <field name="active" eval="False"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall">1</field>
+        <field name="model_id" ref="model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_action_assign_general_commission_to_picking()</field>
+    </record>
+
+    <record id="delete_commission_image_to_picking_cron" model="ir.cron">
+        <field name="name">Cron para quitar imagenes de comisiones a OUT.</field>
+        <field name="active" eval="False"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall">1</field>
+        <field name="model_id" ref="model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_set_false_picking_images()</field>
+    </record>
+
+    <record id="reassign_images_to_pick_cron_week_1" model="ir.cron">
+        <field name="name">Cron para exlcuir OUT de comisiones generales viejas</field>
+        <field name="active" eval="False"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall">1</field>
+        <field name="model_id" ref="model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code">model.exclude_out_from_older_general_commissons()</field>
+    </record>
+    
+    <record id="reassign_images_to_pick_cron_week_2" model="ir.cron">
+        <field name="name">Cron para reiniciar comisiones de productos marca</field>
+        <field name="active" eval="False"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall">1</field>
+        <field name="model_id" ref="model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code">model.reset_product_brand_commission()</field>
+    </record>
+
+    <record id="reassign_images_to_pick_cron_week_3" model="ir.cron">
+        <field name="name">Cron para eliminar outs de VIP duplicados</field>
+        <field name="active" eval="False"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall">1</field>
+        <field name="model_id" ref="model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code">model.delete_duplicate_outs_in_client_commission()</field>
+    </record>
+
+    <record id="reassign_images_to_pick_cron_week_4" model="ir.cron">
+        <field name="name">Cron para eliminar OUT VIP de general y OUT que no deberian ser VIP</field>
+        <field name="active" eval="False"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall">1</field>
+        <field name="model_id" ref="model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code">model.delete_out_of_invalid_commission()</field>
+    </record>
+
+</odoo>

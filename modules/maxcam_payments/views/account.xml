@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_tax_inh_maxcam_payments" model="ir.ui.view">
+            <field name="name">Check para impuesto en app</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='active']" position="after">
+                    <field name="in_app" />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

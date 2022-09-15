@@ -1,0 +1,68 @@
+<odoo>
+	<data>
+		<!-- explicit list view definition -->
+		<record model="ir.ui.view" id="retention_register_list">
+			<field name="name">Retenciones notificadas list</field>
+			<field name="model">retention.register</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="partner_id" />
+					<field name="seller_id" />
+                    <field name="payment_approval" />
+					<field name="invoice_id"/>
+                    <field name="move_id" />
+					<field name="note" />
+					<field name="state" widget="badge"/>
+					<field name="create_date" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_maxcam_retention_register" model="ir.ui.view">
+			<field name="name">maxcam_payments.retention.register.form</field>
+			<field name="model">retention.register</field>
+			<field name="arch" type="xml">
+				<form string="Retencion">
+					<header>
+						<!-- Post -->
+						<field name="state" widget="statusbar" statusbar_colors='{"draft":"red","process":"blue"}'/>
+					</header>
+										
+					<sheet>
+						<group>
+							<field name="image_filename" invisible="1"/>
+							<field name="image" filename="image_filename" widget="binary" style="font-size:2.5em;"/>
+							
+							<field name="partner_id" string="Cliente" attrs="{'readonly':[('state','=','process')]}"/>
+							<field name="seller_id" attrs="{'readonly':[('state','=','process')]}"/>
+                            <field name="payment_approval" />
+						</group>
+						<group>
+							<field name="invoice_id" />
+                            <field name="move_id" />
+							<field name="note" />
+						</group>
+					
+						</sheet>
+						<div class="oe_chatter">
+							<field name="message_follower_ids"/>
+							<field name="activity_ids"/>
+							<field name="message_ids"/>
+						</div>
+				</form>
+			</field>
+		</record>
+
+
+		<!-- actions opening views on models -->
+		<record model="ir.actions.act_window" id="maxcam_payments.action_window_retention_register">
+			<field name="name">Retenciones notificadas</field>
+			<field name="res_model">retention.register</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+	
+		<!-- menu categories -->
+		<menuitem name="Retenciones Notificadas" id="maxcam_payments.payments_maxcam_retention_register" parent="maxcam_payments.menu_root" action="action_window_retention_register"/>
+	</data>
+</odoo>

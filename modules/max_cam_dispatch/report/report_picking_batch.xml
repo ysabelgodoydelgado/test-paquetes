@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Add a shortcut to wishlist / talks after registration -->
+        <template id="report_picking_batch_fleet2" inherit_id="stock_picking_batch.report_picking_batch">
+            <xpath expr="//div[hasclass('page')]/div[2]" position="after">
+                <div id="picking_fleet" class="row">
+                    <div class="col-auto col-3 mw-100" t-if="o.driver_id">
+                        <strong>Chofer:</strong>
+                        <span class="m-0" t-field="o.driver_id.name"/>
+                    </div>
+
+                    <t t-if="o.fleet2_id">
+                        <t t-foreach="o.fleet2_id" t-as="fleet">
+                            <div class="col-auto col-3 mw-100">
+                                <strong>Placa:</strong>
+                                <span class="m-0" t-field="fleet.license_plate"/>
+                            </div>
+                            <t t-if="fleet.model_id">
+                                <t t-foreach="fleet.model_id" t-as="fleet2">
+                                    <div class="col-auto col-3 mw-100" t-if="fleet2.name">
+                                        <strong>Modelo:</strong>
+                                        <span class="m-0" t-field="fleet2.name"/>
+                                    </div>
+                                    <div class="col-auto col-3 mw-100" t-if="fleet2.brand_id">
+                                        <strong>Marca:</strong>
+                                        <span class="m-0" t-field="fleet2.brand_id"/>
+                                    </div>
+                                </t>
+                            </t>
+                        </t>
+                    </t>
+                </div>
+
+                <div id="varius_pickung" class="row">
+                    <div class="col-auto col-3 mw-100" t-if="o.qty_partners">
+                        <strong>Cantidad de clientes:</strong>
+                        <span class="m-0" t-field="o.qty_partners"/>
+                    </div>
+                    <div class="col-auto col-3 mw-100" t-if="o.total_invoice">
+                        <strong>Total Facturado:</strong>
+                        <span class="m-0" t-field="o.total_invoice"/>
+                    </div>
+                    <div class="col-auto col-3 mw-100" t-if="len(o.picking_ids) > 0">
+                        <strong>Total Bultos:</strong>
+                        <t t-set="total_packages" t-value="sum(o.picking_ids.mapped('qty_packages_dispatch_total'))"/>
+                        <span class="m-0" t-esc="total_packages"/>
+                    </div>
+                    <div class="col-auto col-3 mw-100">
+                        <span>&amp;nbsp;</span>
+                    </div>
+                </div>
+            </xpath>
+
+            <!-- Add lines -->
+            <!-- Add Nro Packages-->
+            <xpath expr="//table[hasclass('table-condensed')][1]/thead/tr/th[2]" position="after">
+                <th>Cant. Bultos</th>
+            </xpath>
+            <xpath expr="//table[hasclass('table-condensed')][1]/tbody/tr/td[2]" position="after">
+                <td>
+                    <span t-field="pick.qty_packages_dispatch_total"/>
+                </td>
+            </xpath>
+
+            <!-- Add partner_id-->
+            <xpath expr="//table[hasclass('table-condensed')][1]/thead/tr/th[2]" position="after">
+                <th>Cliente</th>
+                <th>Zona</th>
+            </xpath>
+            <xpath expr="//table[hasclass('table-condensed')][1]/tbody/tr/td[2]" position="after">
+                <td>
+                    <span t-field="pick.partner_id.name"/>
+                </td>
+                <td>
+                    <span t-field="pick.partner_id.city"/>
+                </td>
+            </xpath>
+
+            <!-- Add total invoice-->
+            <xpath expr="//table[hasclass('table-condensed')][1]/thead/tr/th[4]" position="after">
+                <th>Total Factura</th>
+            </xpath>
+            <xpath expr="//table[hasclass('table-condensed')][1]/tbody/tr/td[4]" position="after">
+                <td>
+                    <span t-field="pick.invoices_total_amount"/>
+                </td>
+            </xpath>
+
+            <!-- Add origin-->
+            <xpath expr="//table[hasclass('table-condensed')][1]/thead/tr/th[4]" position="after">
+                <th>Doc. Origen</th>
+            </xpath>
+            <xpath expr="//table[hasclass('table-condensed')][1]/tbody/tr/td[4]" position="after">
+                <td>
+                    <span t-field="pick.origin"/>
+                </td>
+            </xpath>
+
+            <!-- Add scheduled date-->
+            <xpath expr="//table[hasclass('table-condensed')][1]/thead/tr/th[4]" position="after">
+                <th>Fecha Programada</th>
+            </xpath>
+            <xpath expr="//table[hasclass('table-condensed')][1]/tbody/tr/td[4]" position="after">
+                <td>
+                    <span t-field="pick.scheduled_date"/>
+                </td>
+            </xpath>
+
+        </template>
+
+    </data>
+</odoo>

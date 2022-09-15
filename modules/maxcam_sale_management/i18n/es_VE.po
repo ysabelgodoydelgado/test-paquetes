@@ -1,0 +1,62 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* maxcam_sale_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e-20210111\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-25 01:50+0000\n"
+"PO-Revision-Date: 2021-03-25 01:50+0000\n"
+"Last-Translator: Antony Herrera <antony@binaural.com.ve> 2021\n"
+"Language-Team: Spanish (Venezuela)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: maxcam_sale_management
+#: model:ir.model,name:maxcam_sale_management.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: maxcam_sale_management
+#: model:ir.model.fields,field_description:maxcam_sale_management.field_res_partner__display_name
+#: model:ir.model.fields,field_description:maxcam_sale_management.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Mostrar nombre"
+
+#. module: maxcam_sale_management
+#: model:ir.model.fields,field_description:maxcam_sale_management.field_res_partner__id
+#: model:ir.model.fields,field_description:maxcam_sale_management.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: maxcam_sale_management
+#: model:ir.model.fields,field_description:maxcam_sale_management.field_res_partner____last_update
+#: model:ir.model.fields,field_description:maxcam_sale_management.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr "Modificada por última vez"
+
+#. module: maxcam_sale_management
+#: model:ir.model,name:maxcam_sale_management.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: maxcam_sale_management
+#: code:addons/maxcam_sale_management/models/sale_order.py:0
+#, python-format
+msgid "The client does not have a Credit Limit available"
+msgstr "El cliente no tiene Límite de Crédito disponible"
+
+#. module: maxcam_sale_management
+#: model:ir.model.fields,field_description:maxcam_sale_management.field_res_partner__customer
+#: model:ir.model.fields,field_description:maxcam_sale_management.field_res_users__customer
+msgid "client"
+msgstr "Cliente"
+
+#. module: maxcam_sale_management
+#: model:ir.model.fields,field_description:maxcam_sale_management.field_res_partner__supplier
+#: model:ir.model.fields,field_description:maxcam_sale_management.field_res_users__supplier
+msgid "supplier"
+msgstr "Proveedor"

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="product_template_only_form_view_product_brand" model="ir.ui.view">
+            <field name="name">product.template.form.inherit.product.brand</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <field name="alternate_code" />
+                    <field name="brand_id" options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>
+                    <field name="sales_policy"/>
+                    <field name="warehouse_quantity" />
+                    <field name="warehouse_quantity_all" />
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="product_template_only_form_view_product_button_header" model="ir.ui.view">
+            <field name="name">product.template.form.inherit.button.header</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_open_quants']" position="before">
+                    <button type="object" name="button_dummy" attrs="{'invisible':[('type', '!=', 'product')]}"
+                            class="oe_stat_button"
+                            icon="fa-cube">
+                        <div class="o_field_widget o_stat_info" name="button_available_qty">
+                            <span class="o_stat_value" widget="statinfo">
+                                <field name="available_qty" widget="statinfo" nolabel="1" class="mr4"/>
+                                <field name="uom_name"/>
+                            </span>
+                            <span class="o_stat_text">Disponible para vender</span>
+                        </div>
+                    </button>
+                </xpath>
+                
+                <xpath expr="//button[@name='action_open_quants']" position="after">
+                    <button type="object" name="button_dummy" attrs="{'invisible':[('type', '!=', 'product')]}"
+                            class="oe_stat_button"
+                            icon="fa-minus-square">
+                        <div class="o_field_widget o_stat_info" name="button_available_qty">
+                            <span class="o_stat_value" widget="statinfo">
+                                <field name="outgoing_qty" widget="statinfo" nolabel="1" class="mr4"/>
+                                <field name="uom_name"/>
+                            </span>
+                            <!--<span class="o_stat_text">Reservada</span>-->
+                            <span class="o_stat_text">En Pickings</span>
+                        </div>
+                    </button>
+                </xpath>
+
+                <!--<xpath expr="//button[@name='action_open_quants']" position="before">
+                    <button type="object" name="button_dummy" attrs="{'invisible':[('type', '!=', 'product')]}"
+                            class="oe_stat_button"
+                            icon="fa-cube">
+                        <div class="o_field_widget o_stat_info" name="button_free_qty">
+                            <span class="o_stat_value" widget="statinfo">
+                                <field name="free_qty" widget="statinfo" nolabel="1" class="mr4"/>
+                                <field name="uom_name"/>
+                            </span>
+                            <span class="o_stat_text">Sin reservar</span>
+                        </div>
+                    </button>
+                </xpath>-->
+
+                <xpath expr="//page[@name='sales']" position="attributes">
+                    <attribute name="groups">base.group_system,maxcam_permissions.maxcam_permission_stock_operation_manager</attribute>
+                </xpath>
+
+                <xpath expr="//page[@name='inventory']" position="attributes">
+                    <attribute name="groups">base.group_system,maxcam_stock.maxcam_inventory_page,maxcam_permissions.maxcam_permission_stock_operation_manager</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="product_template_form_view_maxcam" model="ir.ui.view">
+            <field name="name">product.template.common.form.maxcam</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='general_information']/group/group[@name='group_standard_price']" position="inside">
+                    <field name="quantity_package"/>
+                    <field name="pricelist_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                </xpath>
+                <xpath expr="//page[@name='inventory']/group[@name='inventory']/group[@name='operations']" position="inside">
+                    <field name="pick_location" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="account_product_template_form_view_maxcam" model="ir.ui.view">
+            <field name="name">product.template.form.inherit.maxcam</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="account.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='invoicing']" position="attributes">
+                    <attribute name="groups">base.group_system,maxcam_permissions.maxcam_permission_stock_operation_manager</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_template_tree_view_inherit_maxcam_stock" model="ir.ui.view">
+            <field name="name">product.template.form.inherit.maxcam.stock</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="alternate_code" />
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="brand_id" />
+                </xpath>
+                <!--codigo alterno requerido -->
+                <xpath expr="//field[@name='default_code']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <field name="standard_price" position="after">
+                    <field name="available_qty_store" />
+                </field>
+            </field>
+        </record>
+
+        <record id="product_template_only_form_view_maxcam" model="ir.ui.view">
+            <field name="name">product.template.product.form.maxcam</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <!--codigo alterno requerido -->
+                <xpath expr="//field[@name='default_code']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+         <record id="commom_product_template_form_view_maxcam" model="ir.ui.view">
+            <field name="name">product.template.common.form.maxcam</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <!--codigo alterno requerido -->
+                <xpath expr="//field[@name='list_price']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+            </field>
+        </record>
+        <!-- este es de inventario -->
+<!--        <record id="product_template_search_form_view_stock_maxcam" model="ir.ui.view">
+            <field name="name">product.template.search.stock.form.maxcam</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock.product_template_search_form_view_stock"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='warehouse_id']" position="after">
+                    <field name="alternate_code" context="{'alternate_code': self}" filter_domain="[]"/>
+                </xpath>
+            </field>
+        </record>-->
+
+        <!-- principal -->
+        <record id="product_template_search_view_root_maxcam" model="ir.ui.view">
+            <field name="name">product.template.search.root.maxcam</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="alternate_code" filter_domain="[('alternate_code', '=', self)]"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

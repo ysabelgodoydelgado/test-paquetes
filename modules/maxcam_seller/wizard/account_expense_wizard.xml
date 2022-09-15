@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_expense_form_view" model="ir.ui.view">
+            <field name="name">expense record for sellers</field>
+            <field name="model">account.expense.wizard</field>
+            <field name="arch" type="xml">
+                <form string="invoice expenses">
+                    <group>
+                        <group>
+                            <field name="type_expense" widget="radio"/>
+                        </group>
+                    </group>
+                    <label for="move_ids" string="Preview Modifications"/>
+                    <field name="move_ids" options="{'no_open':True,'no_create':1,'no_create_edit':1}">
+                        <tree create="0" delete="1" multi_edit="0">
+                            <field name="name"/>
+                            <field name="seller_id"/>
+                            <!--                            <field name="commission" sum="Commission" />-->
+                            <field name="total_commission" sum="Commission total" widget="monetary"/>
+                            <field name="paid_seller"/>
+                        </tree>
+                    </field>
+                    <footer>
+                        <button string="Confirm" name="generate_expense" type="object" default_focus="1"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_account_resequence" model="ir.actions.act_window">
+            <field name="name">Invoice expenses</field>
+            <field name="res_model">account.expense.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account_expense_form_view"/>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_view_types">list</field>
+        </record>
+    </data>
+</odoo>

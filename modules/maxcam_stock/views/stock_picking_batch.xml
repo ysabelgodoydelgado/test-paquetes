@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="stock_picking_batch_form_inherit_maxcam" model="ir.ui.view">
+            <field name="name">stock.picking.batch.inherit.maxcam</field>
+            <field name="model">stock.picking.batch</field>
+            <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
+            <field name="arch" type="xml">
+
+                <!--<xpath expr="//header/field[@name='state']" position="attributes">
+                    <attribute name="statusbar_visible">draft,delivered,in_progress,done,cancel</attribute>
+                </xpath>-->
+
+                <!-- add field date -->
+                <xpath expr="//group/group/field[@name='scheduled_date']" position="after">
+                    <field name="dispatch_date"
+                           attrs="{'readonly':[('state', 'in', ['done','cancel'])],'invisible': [('state', '=', 'draft')]}"/>
+                </xpath>
+
+                <!-- hide button state in progress -->
+                <!--<xpath expr="//header/button[@name='action_assign']" position="attributes">
+                    <attribute name="attrs">{'invisible': [ '|', ('state', '!=', 'delivered'),
+                        ('show_check_availability', '=', False)]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//header/button[@name='action_done']" position="attributes">
+                    <attribute name="attrs">{'invisible': [ '|', ('state', '!=', 'delivered'),
+                        ('show_check_availability', '=', True)]}
+                    </attribute>
+                </xpath>-->
+                <!-- add button action delivered -->
+               <!-- <xpath expr="//header/field[@name='state']" position="before">
+                    <button name="action_delivered" string="Delivered" type="object" class="oe_highlight"
+                            states="in_progress"/>
+                </xpath>-->
+
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name="string">Vendedor</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

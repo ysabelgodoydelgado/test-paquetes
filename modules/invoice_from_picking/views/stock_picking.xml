@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+
+        <record id="view_picking_maxcam_stock_form_inherited_hidden" model="ir.ui.view">
+            <field name="name">stock.picking.maxcam.stock.form.inherit.hidden</field>
+            <field name="model">stock.picking</field>
+            <field name="groups_id" eval="[(4, ref('invoice_from_picking.stock_group_restric'))]"/>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <!-- Validar -->
+                <xpath expr="//header/button[@name='button_validate']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', '|', '|', '|', ('state', 'in', ('waiting','confirmed')),
+                        ('show_validate', '=', False), ('state_check', '=', False), ('printed', '=', False),
+                        ('invoice_state', '=', '2binvoiced')]}
+                    </attribute>
+                </xpath>
+                <!--Anular reserva -->
+                <xpath expr="//header/button[@name='do_unreserve']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <!-- Desechar -->
+                <xpath expr="//header/button[@name='button_scrap']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <!-- desbloquear -->
+                <xpath expr="//header/button[@name='action_toggle_is_locked']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <!-- imprimir -->
+                <xpath expr="//header/button[@name='do_print_picking']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', '|', ('state', '!=', 'assigned'),
+                        ('state_check', '=', True), ('printed', '=', True)]}
+                    </attribute>
+                </xpath>
+                <!--<xpath expr="//header/button[@name='385']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>-->
+                <xpath expr="//header/button[hasclass('action_check')]" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', '|', ('state', '!=', 'assigned'),
+                        ('state_check', '=', True), ('printed', '=', False)]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//header/button[hasclass('action_uncheck')]" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', '|', ('state', '!=', 'assigned'),
+                        ('state_check', '=', False), ('invoice_state', '=', 'invoiced')]}
+                    </attribute>
+                </xpath>
+                <!--<xpath expr="//header/button[@name='action_cancel']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('printed', '!=', True), ('state', '!=', 'assigned')]}</attribute>
+				</xpath>-->
+            </field>
+        </record>
+
+    </data>
+</odoo>

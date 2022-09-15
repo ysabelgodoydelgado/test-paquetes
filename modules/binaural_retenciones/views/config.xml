@@ -1,0 +1,136 @@
+<odoo>
+    <data>
+
+        <!--
+        =====================================================
+        Configurate
+        =====================================================
+        -->
+
+        <!-- View Tree: Configurate -->
+        <record id="view_configurate_tree" model="ir.ui.view">
+            <field name="name">Configuración</field>
+            <field name="model">retention_venezuela.configurate</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="company_id"/>
+                    <field name="status" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- View Form: Configuracion -->
+        <record id="view_configurate_form" model="ir.ui.view">
+            <field name="name">Configuración</field>
+            <field name="model">retention_venezuela.configurate</field>
+            <field name="arch" type="xml">
+                <form string="Configuración">
+                    <sheet string="Configuración">
+                        <group>
+                            <field name="name"/>
+                            <field name="code" readonly="1"/>
+                            <field name="company_id"/>
+                            <field name="status"/>
+                        </group>
+                        <div>
+                            <h2>Libros Contables</h2>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="journal_retention_client"/>
+                            </group>
+                            <group>
+                                <field name="journal_retention_supplier"/>
+                            </group>
+                        </group>
+                        <div>
+                            <h2>CUENTAS DE RETENCIONES</h2>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="account_retention_iva"/>
+                            </group>
+                            <group>
+                                <field name="account_retention_islr"/>
+                            </group>
+                        </group>
+                        <div>
+                            <h2>CUENTAS POR COBRAR Y POR PAGAR</h2>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="account_retention_receivable_client"/>
+                            </group>
+                            <group>
+                                <field name="account_retention_to_pay_supplier"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--Search View-->
+        <record id="view_search_configurate" model="ir.ui.view">
+            <field name="name">Configuración</field>
+            <field name="model">retention_venezuela.configurate</field>
+            <field name="arch" type="xml">
+                <search string="Configuración">
+                    <filter name="status" domain="[('status','=',True)]" string="Activo"/>
+                </search>
+            </field>
+        </record>
+
+        <!--Configuracion de Vista: Configuracion-->
+        <record id="action_configurate" model="ir.actions.act_window">
+            <field name="name">Configuración</field>
+            <field name="res_model">retention_venezuela.configurate</field>
+            <field name="type">ir.actions.act_window</field>
+            <!--<field name="view_type">form</field>-->
+            <field name="view_mode">form,tree,kanban,</field>
+            <field name="context">{"search_default_status":True}</field>
+        </record>
+
+
+        <!--Menu Top: Retenciones-->
+        <menuitem name="Retenciones" id="binaural_retenciones.menu_root"/>
+
+
+        <!--Menu Lateral-->
+        <menuitem name="Configuración" id="binaural_retenciones.configurate" sequence="150" parent="binaural_retenciones.menu_root"/>
+        <menuitem name="Cuentas" id="binaural_retenciones.configurate_account" parent="binaural_retenciones.configurate" action="action_configurate"/>
+
+
+       <!-- <record id="sequence_view_tree_from_islr" model="ir.ui.view">
+            <field name="model">ir.sequence</field>
+            <field name="arch" type="xml">
+                <tree string="Sequences">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="prefix"/>
+                    <field name="padding"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="number_next_actual"/>
+                    <field name="number_increment"/>
+                    <field name="implementation"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="ir_sequence_form_retention_islr" model="ir.actions.act_window">
+            <field name="name">Sequences</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ir.sequence</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="sequence_view_tree_from_islr"/>
+            <field name="context">{'active_test': False}</field>
+        </record>
+
+        <menuitem name="Secuencias" action="ir_sequence_form_retention_islr" sequence="90" id="menu_ir_sequence_form" parent="retention_venezuela.configurate"/>
+        -->
+
+
+    </data>
+</odoo>

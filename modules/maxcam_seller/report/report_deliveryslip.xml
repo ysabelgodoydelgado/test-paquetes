@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Add a shortcut to wishlist / talks after registration -->
+        <template id="report_delivery_document_maxcam_seller" inherit_id="stock.report_delivery_document">
+            <!-- page 1 -->
+            <!-- quitar decimales -->
+            <xpath expr="//div[@name='div_origin']" position="after">
+                <div t-if="o.seller_id" class="col-auto" name="div_seller">
+                    <strong>Vendedor:</strong>
+                    <p t-field="o.seller_id"/>
+                </div>
+            </xpath>
+
+        </template>
+
+    </data>
+</odoo>

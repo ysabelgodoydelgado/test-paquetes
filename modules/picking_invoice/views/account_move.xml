@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+
+        <record id="picking_invoice_view_move_form_inherit" model="ir.ui.view">
+            <field name="name">relate.account.move.picking.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <!-- inventory movement list -->
+                <xpath expr="//page[@id='other_tab']" position="after">
+                    <page id="edi_picking" string="Stock picking" attrs="{'invisible': [('state', '=', 'draft')]}">
+                        <field name="picking_ids" widget="many2many" domain="[('origin', '=', invoice_origin)]"
+                               context="{'origin': invoice_origin}" force_save="1"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

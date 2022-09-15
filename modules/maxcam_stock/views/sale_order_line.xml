@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+       <record id="view_order_line_form_brand" model="ir.ui.view">
+            <field name="name">sale.order.line.product.brand</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+              
+                <xpath expr="//page/field[@name='order_line']/tree/field[@name='qty_delivered']" position="before">
+                    <field name="brand_id" string="Brand"/>
+                    <field name="available_qty"/>
+                    <!--available es creado = a mano - salidas; free_qty es de odoo : a mano - reservado, pueden haber productos en salida sin reservar-->
+                    <field name="free_qty"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

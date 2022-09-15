@@ -1,0 +1,352 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* maxcam_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e-20210111\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-16 13:22+0000\n"
+"PO-Revision-Date: 2021-03-16 13:22+0000\n"
+"Last-Translator: Antony Herrera <antony@binaural.com.ve> 2021\n"
+"Language-Team: Spanish (Venezuela)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid ""
+"-\n"
+"\t\t\t\t\t\t\t\t\t\t\t\tMunicípio:\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t<span>MUNICIPIO</span>"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid ""
+"-\n"
+"\t\t\t\t\t\t\t\t\t\t\t\tTelf:"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid ""
+"-\n"
+"\n"
+"\t\t\t\t\t\t\t\t\t\t\t\tCiudad:"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid ""
+"-\n"
+"\n"
+"\t\t\t\t\t\t\t\t\t\t\t\tEstado:"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid ""
+"<br/>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tMotivo:"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid ""
+"<br/>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTotal Facturado:"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.res_config_settings_view_form_qty_invoice
+msgid "<span class=\"o_form_label\">Máxima de productos facturables</span>"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Alic."
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Alterno"
+msgstr ""
+
+#. module: maxcam_account
+#: model:ir.model.fields,field_description:maxcam_account.field_account_payment__attachment_id
+msgid "Attachment"
+msgstr "Adjunto"
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Base Imponible 16%"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "C.I / R.I.F:"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Cantidad"
+msgstr ""
+
+#. module: maxcam_account
+#: model:ir.model.fields,field_description:maxcam_account.field_res_config_settings__qty_max
+msgid "Cantidad Máxima"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.res_config_settings_view_form_qty_invoice
+msgid "Cantidad de Líneas"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Cond. de pago:"
+msgstr ""
+
+#. module: maxcam_account
+#: model:ir.model,name:maxcam_account.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de configuración"
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Código"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Descripción"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Devolución Nª"
+msgstr ""
+
+#. module: maxcam_account
+#: model:ir.model.fields,field_description:maxcam_account.field_account_move__display_name
+#: model:ir.model.fields,field_description:maxcam_account.field_account_payment__display_name
+#: model:ir.model.fields,field_description:maxcam_account.field_account_payment_register__display_name
+#: model:ir.model.fields,field_description:maxcam_account.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:maxcam_account.field_sale_advance_payment_inv__display_name
+#: model:ir.model.fields,field_description:maxcam_account.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Mostrar nombre"
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Domicilio Fiscal:"
+msgstr ""
+
+#. module: maxcam_account
+#: code:addons/maxcam_account/models/account_move.py:0
+#, python-format
+msgid "El cliente no tiene Límite de Crédito disponible"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Emisión:"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Fecha de Factura:"
+msgstr ""
+
+#. module: maxcam_account
+#: model:ir.actions.report,name:maxcam_account.invoice_free_form_1_id
+msgid "Forma Libre MaxCam"
+msgstr ""
+
+#. module: maxcam_account
+#: model:ir.model.fields,help:maxcam_account.field_account_bank_statement_line__foreign_currency_rate
+#: model:ir.model.fields,help:maxcam_account.field_account_move__foreign_currency_rate
+#: model:ir.model.fields,help:maxcam_account.field_account_payment__foreign_currency_rate
+#: model:ir.model.fields,help:maxcam_account.field_account_payment__foreign_payment_currency_rate
+#: model:ir.model.fields,help:maxcam_account.field_account_payment_register__foreign_payment_currency_rate
+msgid "Guarda la tasa en que se calcula el total en la moneda foránea"
+msgstr ""
+
+#. module: maxcam_account
+#: model:ir.model.fields,field_description:maxcam_account.field_account_move__id
+#: model:ir.model.fields,field_description:maxcam_account.field_account_payment__id
+#: model:ir.model.fields,field_description:maxcam_account.field_account_payment_register__id
+#: model:ir.model.fields,field_description:maxcam_account.field_res_config_settings__id
+#: model:ir.model.fields,field_description:maxcam_account.field_sale_advance_payment_inv__id
+#: model:ir.model.fields,field_description:maxcam_account.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "IVA 16%"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.res_config_settings_view_form_qty_invoice
+msgid "Ingresa la cantidad máxima de productos facturables"
+msgstr ""
+
+#. module: maxcam_account
+#: model:ir.model,name:maxcam_account.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+#. module: maxcam_account
+#: model:ir.model.fields,field_description:maxcam_account.field_account_move____last_update
+#: model:ir.model.fields,field_description:maxcam_account.field_account_payment____last_update
+#: model:ir.model.fields,field_description:maxcam_account.field_account_payment_register____last_update
+#: model:ir.model.fields,field_description:maxcam_account.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:maxcam_account.field_sale_advance_payment_inv____last_update
+#: model:ir.model.fields,field_description:maxcam_account.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr "Modificada por última vez"
+
+#. module: maxcam_account
+#: model:ir.model.fields,field_description:maxcam_account.field_account_move__foreign_currency_id
+#: model:ir.model.fields,field_description:maxcam_account.field_account_payment__foreign_currency_id
+#: model:ir.model.fields,field_description:maxcam_account.field_account_payment__foreign_payment_currency_id
+#: model:ir.model.fields,field_description:maxcam_account.field_account_payment_register__foreign_payment_currency_id
+msgid "Moneda/Divisa"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Monto total exento y/o exonerado"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Nota de Entrega Nª"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Nro de Factura:"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Nro de control:"
+msgstr ""
+
+#. module: maxcam_account
+#: model:ir.model,name:maxcam_account.model_account_payment
+msgid "Payments"
+msgstr "Pagos"
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Precio Unt."
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Razón social:"
+msgstr ""
+
+#. module: maxcam_account
+#: model:ir.model.fields,field_description:maxcam_account.field_account_bank_statement_line__reception_date
+#: model:ir.model.fields,field_description:maxcam_account.field_account_move__reception_date
+#: model:ir.model.fields,field_description:maxcam_account.field_account_payment__reception_date
+#: model_terms:ir.ui.view,arch_db:maxcam_account.maxcam_view_move_form_inherit
+msgid "Reception date"
+msgstr "Fecha de recepción"
+
+#. module: maxcam_account
+#: model:ir.model,name:maxcam_account.model_account_payment_register
+msgid "Register Payment"
+msgstr "Registrar pago"
+
+#. module: maxcam_account
+#: model:ir.model,name:maxcam_account.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr "Ventas. Anticipo pago factura"
+
+#. module: maxcam_account
+#: model:ir.model,name:maxcam_account.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.maxcam_view_move_form_inherit
+#: model_terms:ir.ui.view,arch_db:maxcam_account.maxcam_view_mpayment_form_inherit
+#: model_terms:ir.ui.view,arch_db:maxcam_account.maxcam_view_mpayment_form_inherit_wizard
+msgid "Tasa"
+msgstr ""
+
+#. module: maxcam_account
+#: model:ir.model.fields,field_description:maxcam_account.field_account_bank_statement_line__foreign_currency_rate
+#: model:ir.model.fields,field_description:maxcam_account.field_account_move__foreign_currency_rate
+#: model:ir.model.fields,field_description:maxcam_account.field_account_payment__foreign_currency_rate
+#: model:ir.model.fields,field_description:maxcam_account.field_account_payment__foreign_payment_currency_rate
+#: model:ir.model.fields,field_description:maxcam_account.field_account_payment_register__foreign_payment_currency_rate
+msgid "Tasa Divisa"
+msgstr ""
+
+#. module: maxcam_account
+#: code:addons/maxcam_account/models/res_config_invoice.py:0
+#, python-format
+msgid ""
+"The product used to invoice a down payment should be of type 'Service'. "
+"Please use another product or update this product."
+msgstr ""
+"El producto utilizado para facturar un anticipo debe ser del tipo 'Servicio'."
+"Utilice otro producto o actualice este producto."
+
+#. module: maxcam_account
+#: code:addons/maxcam_account/models/res_config_invoice.py:0
+#, python-format
+msgid ""
+"The product used to invoice a down payment should have an invoice policy set"
+" to \"Ordered quantities\". Please update your deposit product to be able to"
+" create a deposit invoice."
+msgstr ""
+"El producto utilizado para facturar un anticipo debe tener una política de facturación establecida"
+" a \'Cantidades pedidas\'. Actualice su producto de depósito para poder"
+" crear una factura de depósito."
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Total"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Total a pagar"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid "Vencimiento:"
+msgstr ""
+
+#. module: maxcam_account
+#: model_terms:ir.ui.view,arch_db:maxcam_account.invoice_free_form_template
+msgid ""
+"Vendedor:\n"
+"\t\t\t\t\t\t\t\t\t\t\t\tVendedor numero 1"
+msgstr ""
+
+#. module: maxcam_account
+#: model:ir.model.fields,help:maxcam_account.field_account_bank_statement_line__reception_date
+#: model:ir.model.fields,help:maxcam_account.field_account_move__reception_date
+#: model:ir.model.fields,help:maxcam_account.field_account_payment__reception_date
+msgid ""
+"indicates when the invoice signed by the client is received after dispatch"
+msgstr ""
+"indica cuándo se recibe la factura firmada por el cliente después del envío"
+
+#. module: maxcam_account
+#: code:addons/maxcam_account/models/account_move.py:0
+#, python-format
+msgid "Assign a receipt date to post payments"
+msgstr "Asignar una fecha de recepción para registrar pagos"

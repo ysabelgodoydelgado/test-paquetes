@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_employee_edit_view_form" model="ir.ui.view">
+        <field name="name">hr.employee.edit.view.form.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[@name='hr_settings']/group/group/field[@name='user_id']" position='attributes'>
+                <attribute name="domain">[]</attribute>
+            </xpath>
+
+            <field name="company_id" position="before">
+                <field name="email_personal" />
+                <field name="cannot_access_app"/>
+                <field name="activate_payment_app"/>
+                <field name="is_supervisor"/>
+                <field name="supervisor_id"/>
+            </field>
+
+        </field>
+    </record>
+
+</odoo>

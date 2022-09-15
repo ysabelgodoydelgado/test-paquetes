@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Vista: TREE-->
+    <record id="view_withholdings_tree" model="ir.ui.view">
+        <field name="name">Retenciones de IVA</field>
+        <field name="model">retention_venezuela.withholdings</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="value" />
+                <field name="status" />
+            </tree>
+        </field>
+    </record>
+
+    <!--SEARCH-->
+    <record id="view_search_withholdings" model="ir.ui.view">
+        <field name="name">Porcentaje de Retención de IVA</field>
+        <field name="model">retention_venezuela.withholdings</field>
+        <field name="arch" type="xml">
+            <search string="Retenciones de IVA">
+                <field name="name"/>
+                <filter name="status"  domain="[('status','=',True)]" string="Activo"/>
+            </search>
+        </field>
+    </record>
+
+    <!--Configuracion de Vista-->
+    <record id="binaural_retenciones.action_withholdings" model="ir.actions.act_window" >
+        <field name="name">Porcentaje retención de IVA</field>
+        <field name="res_model">retention_venezuela.withholdings</field>
+        <field name="type">ir.actions.act_window</field>
+        <!--<field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_withholdings_tree"/>
+        <field name="context">{"search_default_status":True}</field>
+    </record>
+
+    <!--Menu Lateral-->
+     <menuitem name="Porcentaje Retención de IVA" id="binaural_retenciones.withholdings" parent="binaural_retenciones.configurate" action="binaural_retenciones.action_withholdings"/>
+</odoo>

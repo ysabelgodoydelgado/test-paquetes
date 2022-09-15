@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Add a shortcut to wishlist / talks after registration -->
+        <template id="report_maxcam_invoice_free_form_template"
+                  inherit_id="maxcam_account.maxcam_invoice_free_form_template">
+            <!-- invoice rel -->
+            <xpath expr="//td[@name='td_vat']" position="after">
+                <td colspan="2">
+                    <span>Cant. Bultos:&amp;nbsp;
+                        <span t-field="invoice.qty_packages"/>
+                    </span>
+                </td>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

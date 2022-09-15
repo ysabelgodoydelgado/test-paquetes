@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_form_invoice_inherited_exempt" model="ir.ui.view">
+            <field name="name">Extension de factura exento</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+
+            <field name="arch" type="xml">
+            
+                <field name="amount_total" position="before">
+                    <field name="amount_exempt" force_save="1" readonly="1" attrs="{'invisible': [('move_type', 'not in', ('in_invoice','in_refund','out_invoice', 'out_refund'))]}"/>
+                    <field name="amount_taxed" force_save="1" readonly="1" attrs="{'invisible': [('move_type', 'not in', ('in_invoice','in_refund','out_invoice', 'out_refund'))]}"/>
+                </field>
+
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- GRUPOS PARA PERMISOS DE VENTAS -->
+    <record model="ir.module.category" id="maxcam_permission_sales">
+        <field name="name">Permisos de ventas</field>
+        <field name="description">Agregar permisos de ventas</field>
+    </record>
+    <record id="maxcam_permission_sales_distribution_chief" model="res.groups">
+        <field name="name">Jefe de distribución</field>
+        <field name="category_id" ref="maxcam_permission_sales"/>
+    </record>
+    <record id="maxcam_permission_sales_warehouse_assistant" model="res.groups">
+        <field name="name">Asistente almacen</field>
+        <field name="category_id" ref="maxcam_permission_sales"/>
+        <field name="implied_ids" eval="[(4, ref('maxcam_permission_sales_distribution_chief'))]"/>
+    </record>
+
+    <!-- GRUPOS PARA PERMISOS DE INVENTARIO -->
+    <record model="ir.module.category" id="maxcam_permission_stock">
+        <field name="name">Permisos de inventario</field>
+        <field name="description">Agregar permisos de inventario</field>
+    </record>
+    <record id="maxcam_permission_stock_operation_manager" model="res.groups">
+        <field name="name">Gerente de Operaciones</field>
+        <field name="category_id" ref="maxcam_permission_stock"/>
+    </record>
+    <record id="maxcam_permission_stock_distribution_chief" model="res.groups">
+        <field name="name">Jefe de distribución</field>
+        <field name="category_id" ref="maxcam_permission_stock"/>
+    </record>
+    <record id="maxcam_permission_stock_warehouse_assistant" model="res.groups">
+        <field name="name">Asistente almacen</field>
+        <field name="category_id" ref="maxcam_permission_stock"/>
+        <field name="implied_ids" eval="[(4, ref('maxcam_permission_stock_distribution_chief'))]"/>
+    </record>
+
+    <!-- GRUPOS PARA PERMISOS DE CONTABILIDAD -->
+    <record model="ir.module.category" id="maxcam_permission_account">
+        <field name="name">Permisos de contabilidad</field>
+        <field name="description">Agregar permisos de contabilidad</field>
+    </record>
+    <record id="maxcam_permission_account_distribution_chief" model="res.groups">
+        <field name="name">Jefe de distribución</field>
+        <field name="category_id" ref="maxcam_permission_account"/>
+    </record>
+    <record id="maxcam_permission_account_warehouse_assistant" model="res.groups">
+        <field name="name">Asistente almacen</field>
+        <field name="category_id" ref="maxcam_permission_account"/>
+        <field name="implied_ids" eval="[(4, ref('maxcam_permission_account_distribution_chief'))]"/>
+    </record>
+
+    <!-- GRUPOS PARA PERMISOS DE RESTABLECER A BORRADOR -->
+    <record id="maxcam_permission_draft" model="ir.module.category">
+        <field name="name">Permisos de restablecer a borrador</field>
+        <field name="description">Agregar permisos para el boton restablecer a borrador</field>
+    </record>
+    <record id="maxcam_permission_draft_show" model="res.groups">
+        <field name="name">Mostrar restablecer a borrador</field>
+        <field name="category_id" ref="maxcam_permission_draft"/>
+    </record>
+    <record id="maxcam_permission_draft_hide" model="res.groups">
+        <field name="name">Ocultar restablecer a borrador</field>
+        <field name="category_id" ref="maxcam_permission_draft"/>
+    </record>
+
+    <!-- GRUPOS PARA PERMISOS DE PRECIOS DE PRODUCTOS -->
+    <record id="maxcam_permission_product_template_prices" model="ir.module.category">
+        <field name="name">Permisos de precios de productos</field>
+        <field name="description">Agregar permisos para precios de productos</field>
+    </record>
+    <record id="maxcam_permission_product_template_hide_prices" model="res.groups">
+        <field name="name">Ocultar precios de productos</field>
+        <field name="category_id" ref="maxcam_permission_product_template_prices"/>
+    </record>
+
+    <!-- GRUPOS PARA PERMISOS DE SUPRIMRIR -->
+    <record id="maxcam_permission_delete" model="ir.module.category">
+	<field name="name">Permisos para Suprimir</field>
+	<field name="description">Agregar permisos para suprimir</field>
+    </record>
+    <record id="maxcam_permission_delete_hide_delete" model="res.groups">
+	<field name="name">Ocultar Suprimir</field>
+	<field name="category_id" ref="maxcam_permission_delete"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,47 @@
+<odoo>
+	<data>
+		<!-- actions opening views on models -->
+		<record model="ir.ui.view" id="maxcam_payments.lines_retention">
+			<field name="name">maxcam lines list retention</field>
+			<field name="model">payment.approval.line</field>
+			<field name="arch" type="xml">
+				<tree>
+                    <field name="payment_approval" />
+					<field name="name"/>
+					<field name="invoice_id" />
+					<field name="reference" />
+					<field name="amount"/>
+					<field name="journal_id" />
+					<field name="payment_related" />
+                    <field name="invoice_number" />
+                    <field name="subtotal" />
+                    <field name="iva" />
+                    <field name="total_invoice" />
+                    <field name="total_retention" />
+				</tree>
+			</field>
+		</record>
+
+        <record id="maxcam_payments.retention_payments_list" model="ir.actions.act_window">
+            <field name="name">Lineas de pagos con retenciones</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">payment.approval.line</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="maxcam_payments.lines_retention"/>
+            <field name="domain">[('total_retention', '>',0)]</field>
+          
+        </record>
+
+        <record id="maxcam_payments.line_payment_with_retention" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="maxcam_payments.lines_retention"/>
+            <field name="act_window_id" ref="maxcam_payments.retention_payments_list"/>
+        </record>
+
+		
+		<!--<menuitem name="Lineas con retenciones" id="maxcam_payments.payments_maxcam_list_full_retention" parent="maxcam_payments.menu_root" action="maxcam_payments.retention_payments_list"/>-->
+
+
+	</data>
+</odoo>

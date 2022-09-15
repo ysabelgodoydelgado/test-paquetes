@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="report_saleorder_document_inherit_sale_exempt_taxed" inherit_id="sale.report_saleorder_document">
+      	<xpath expr="//div[@id='total']//table//tr[@class='border-black o_total']" position="before">
+        	<tr>
+				<td>
+					<strong>Exento</strong>
+				</td>
+				<td class="text-right">
+					<span t-field="doc.amount_exempt"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<strong>Gravado</strong>
+				</td>
+				<td class="text-right">
+					<span t-field="doc.amount_taxed"/>
+				</td>
+			</tr>
+
+      	</xpath>
+  	</template>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Add a shortcut to wishlist / talks after registration -->
+        <template id="report_report_simple_label_maxcam" inherit_id="product.report_simple_label">
+            <!-- remove price, add new field -->
+            <xpath expr="//div/table/tr[2]/td" position="replace">
+                <td style="height: 2rem">
+                    <strong>Internal Reference:</strong>
+                    <strong t-field="product.default_code" />
+                    <strong>Alternate Code:</strong>
+                    <strong t-field="product.alternate_code" />
+                    <br></br>
+                    <strong>Brand:</strong>
+                    <strong t-field="product.brand_id" />
+                    <!-- LOL -->
+                </td>
+            </xpath>
+
+        </template>
+
+    </data>
+</odoo>

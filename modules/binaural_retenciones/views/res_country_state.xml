@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_form_res_country_state_inherited" model="ir.ui.view">
+            <field name="name">Extension de estado</field>
+            <field name="model">res.country.state</field>
+            <field name="inherit_id" ref="base.view_country_state_form"/>
+            <field name="arch" type="xml">
+                <!-- ...match and extend elements here! ... -->
+
+                <field name="country_id" position="after">
+                    <field name="state" />
+                </field>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

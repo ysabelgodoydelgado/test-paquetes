@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+                string="recibo de pago"
+                id="action_report_commission_payment"
+                model="hr.expense"
+                report_type="qweb-pdf"
+                name="maxcam_seller.report_commission_payment"
+                file="maxcam_seller.report_commission_payment"
+                print_report_name="'%s' % (object.name)"
+        />
+
+        <template id="template_commission_payment">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page" style="font-size: 13px;">
+                        <div class="oe_structure"/>
+                        <h2>
+                            <span>Recibo de pago</span>
+                        </h2>
+                        <div class="row mb32">
+                            <div t-if="o.employee_id" class="col-auto" name="div_employee_id">
+                                <strong>Empleado:</strong>
+                                <p t-field="o.employee_id"/>
+                            </div>
+                            <div class="col-auto" name="div_date">
+                                <strong>Fecha:</strong>
+                                <p t-field="o.date"/>
+                            </div>
+                            <div class="col-auto" name="div_name">
+                                <strong>Descripción:</strong>
+                                <p t-field="o.name"/>
+                            </div>
+                            <div class="col-auto" name="div_validate">
+                                <strong>Validado Por:</strong>
+                                <p t-field="o.create_uid"/>
+                            </div>
+                            <div t-if="o.payment_mode" class="col-auto" name="div_payment_mode">
+                                <strong>Pagado Por:</strong>
+                                <p t-field="o.payment_mode"/>
+                            </div>
+                        </div>
+                        <table class="table table-sm o_main_table" name="expense_table">
+                            <thead>
+                                <tr>
+                                    <th name="th_sm_name">
+                                        <strong>Numero</strong>
+                                    </th>
+                                    <th name="th_sm_reception_date_client" >
+                                        <strong>Fecha de recepción</strong>
+                                    </th>
+                                    <th name="th_sm_last_payment_Date">
+                                        <strong>Fecha del pago</strong>
+                                    </th>
+                                    <th name="th_sm_collection_days">
+                                        <strong>Días de cobro</strong>
+                                    </th>
+                                    <th name="th_sm_amount_total_signed">
+                                        <strong>Total</strong>
+                                    </th>
+                                    <!--<th name="th_sm_ref" class="text-center">
+                                        <strong>Comisión</strong>
+                                    </th>-->
+                                    <th name="th_sm_total_commission">
+                                        <strong>Comisión total</strong>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.invoice_ids" t-as="line">
+                                    <td>
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.reception_date_client"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.last_payment_date"/>
+                                    </td>
+                                    <td class="text-center">
+                                        <span t-field="line.collection_days"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.amount_total_signed"/>
+                                    </td>
+                                    <!--<td class="text-center">
+                                        <span t-field="line.commission"/>
+                                    </td>-->
+                                    <td class="text-center">
+                                        <span t-field="line.total_commission"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="container mt-4">
+                            <div id="total" class="row justify-content-end" style="page-break-inside: avoid;">
+                                <div class="col-8">
+                                    <span class="text-left">
+                                                    Certifica que todos los datos son ciertos, (Fecha y forma).</span>
+                                </div>
+                                <div class="col-4">
+                                    <table class="table table-sm">
+                                        <tr class="border-black o_total">
+                                            <td name="td_total">
+                                                <strong class="float-left">Total</strong>
+                                                <span class="float-right" t-field="o.total_amount"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="oe_structure"/>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="report_commission_payment">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="maxcam_seller.template_commission_payment"/>
+            </t>
+        </template>
+    </data>
+</odoo>

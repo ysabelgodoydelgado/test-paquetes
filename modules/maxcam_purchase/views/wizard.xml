@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <record id="wizard_message_maxcam_update_cost" model="ir.ui.view">
+            <field name="name">wizard.message.maxcam.update.cost</field>
+            <field name="model">wizard.message.maxcam.update.cost</field>
+            <field name="arch" type="xml">
+                <form string="Advertencia">
+                   
+                        <h6>
+                            <field name="name_modal_purchase_partial" readonly="1"/>
+                        </h6>
+                        <field name="purchase_id" invisible="1"/>
+                   
+
+                    <footer>
+                        <button string='Si' name="button_confirm_cost" type="object" class="btn-primary"/>
+                        <button string='No' name="button_reject_update_cost" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

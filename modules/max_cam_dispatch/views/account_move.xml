@@ -1,0 +1,41 @@
+<odoo>
+    <data>
+
+        <record id="max_cam_dispatch_account_move_inh_fields" model="ir.ui.view">
+            <field name="name">maxcam.dispatch.account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <!-- reception_date -->
+                <xpath expr="//field[@name='invoice_date']" position="after">
+                    <field name="reception_date_client"  options="{'datepicker': {'warn_future': true}}"
+                           attrs="{'invisible': [('move_type', 'not in', ['out_invoice', 'out_refund', 'out_receipt'])]}"/>
+                </xpath>
+                <!-- End reception_date -->
+<!--'readonly':['|', ('state', '!=', 'posted'), ('payment_state', '!=', 'not_paid')],-->
+                <xpath expr="//group[@id='header_right_group']" position="inside">
+                    <div class="o_td_label">
+                        <label for="qty_packages" string="Cant. Bultos" style="font-weight:bold;"
+                               attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                    </div>
+
+                    <field name="qty_packages" nolabel="1"
+                           attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="maxcam_account_move_tree_view" model="ir.ui.view">
+            <field name="name">account.move.maxcam.tree.view</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_date_due']" position="after">
+                    <field name="days_elapsed_collection" optional="show" />
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

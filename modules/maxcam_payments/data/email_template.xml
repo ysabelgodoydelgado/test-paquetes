@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="maxcam_payments.email_pago_procesado" model="mail.template">
+            <field name="name">EMAIL PAGO PROCESADO</field>
+            <field name="model_id" ref="maxcam_payments.model_payment_approval"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="email_from">${(object.seller_id.company_id.email)}</field>
+            <field name="email_to">${(object.seller_id.email_personal|safe)}</field>
+            <field name="lang">${object.seller_id.company_id.lang}</field>
+            <!--<field name="report_template" ref="action_example_pdf"/>-->
+            <field name="subject">Hola, ${object.seller_id.name} tu recibo de pago fue procesado</field>
+                <field name="body_html">
+                
+                    <![CDATA[
+                    <div style="width:100%;text-align:center; margin:0 auto;">
+                        <img src="data:image/png;base64,${object.seller_id.company_id.logo}" style="padding: 0px; margin: 0px; height: 100px;" t-att-alt="'%s' % object.seller_id.company_id.name"/>                        
+                    </div>
+                    <div style="width:100%;text-align:left; margin:0 auto;">
+                        <br/>
+                        Cliente: ${object.partner_id.name}
+                        Creado el : ${object.format_date_tz_maxcam(object.create_date)}
+                        
+                        <br/>
+                        Detalles:
+                        % for line in object.payment_approval_line:
+                        <li>
+                            <br/>
+                            Nota: ${line.invoice_id.name} | Monto: ${round(line.amount,2)} | Diario: ${line.journal_id.name}
+                            
+                            
+                        </li>
+                        % endfor
+                        
+                        <br/>
+                       
+                    </div>
+
+                    ]]>
+                </field>
+        </record>
+
+      
+    </data>
+</odoo>

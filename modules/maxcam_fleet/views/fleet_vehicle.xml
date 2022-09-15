@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="fleet_vehicle_view_form_maxcam" model="ir.ui.view">
+            <field name="name">fleet.vehicle.form</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='tag_ids']" position='after'>
+                    <group>
+                        <!--<label for="internal" class="oe_edit_only"/>-->
+                        <field name="internal" widget="boolean_toggle"/>
+                    </group>
+                </xpath>
+
+                <!-- Botones header -->
+                <xpath expr="//div[@name='button_box']" position='attributes'>
+                    <attribute name="attrs">{'invisible': [('internal', '=', False)]}</attribute>
+                </xpath>
+
+                <!-- -->
+                <xpath expr="//label[@for='future_driver_id']" position='attributes'>
+                    <attribute name="attrs">{'invisible': [('internal', '=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='future_driver_id']/.." position='attributes'>
+                    <attribute name="attrs">{'invisible': [('internal', '=', False)]}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='plan_to_change_car']" position='attributes'>
+                    <attribute name="attrs">{'invisible': [('internal', '=', False)]}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='next_assignation_date']" position='attributes'>
+                    <attribute name="attrs">{'invisible': [('internal', '=', False)]}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='location']" position='attributes'>
+                    <attribute name="attrs">{'invisible': [('internal', '=', False)]}</attribute>
+                </xpath>
+
+                <!-- Vehiculo -->
+                <xpath expr="//field[@name='acquisition_date']/.." position='attributes'>
+                    <attribute name="attrs">{'invisible': [('internal', '=', False)]}</attribute>
+                </xpath>
+                <!-- contrato -->
+                <xpath expr="//field[@name='manager_id']/.." position='attributes'>
+                    <attribute name="attrs">{'invisible': [('internal', '=', False)]}</attribute>
+                </xpath>
+                <!-- Modelo -->
+                <xpath expr="//field[@name='color']/.." position='attributes'>
+                    <attribute name="attrs">{'invisible': [('internal', '=', False)]}</attribute>
+                </xpath>
+                <!-- Description -->
+                <xpath expr="//field[@name='description']/.." position='attributes'>
+                    <attribute name="attrs">{'invisible': [('internal', '=', False)]}</attribute>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+
+        <record id="view_stock_picking_maxcam_seller" model="ir.ui.view">
+            <field name="name">stock.picking.inherit.mxcam.seller</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+				<!--agegar nuevos campos-->
+				<xpath expr="//field[@name='partner_id']" position="after">
+				    <field name="seller_id"/>
+				</xpath>
+							
+            </field>
+        </record>
+
+    </data>
+</odoo>

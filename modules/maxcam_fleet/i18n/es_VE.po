@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* maxcam_fleet
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e-20210111\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-08 11:12+0000\n"
+"PO-Revision-Date: 2021-06-08 11:12+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: maxcam_fleet
+#: model:ir.model.fields,field_description:maxcam_fleet.field_fleet_vehicle__display_name
+msgid "Display Name"
+msgstr "Mostrar nombre"
+
+#. module: maxcam_fleet
+#: model:ir.model.fields,field_description:maxcam_fleet.field_fleet_vehicle__id
+msgid "ID"
+msgstr ""
+
+#. module: maxcam_fleet
+#: model:ir.model.fields,field_description:maxcam_fleet.field_fleet_vehicle__internal
+msgid "Internal"
+msgstr "Interno"
+
+#. module: maxcam_fleet
+#: model:ir.model.fields,field_description:maxcam_fleet.field_fleet_vehicle____last_update
+msgid "Last Modified on"
+msgstr "Modificada por última vez"
+
+#. module: maxcam_fleet
+#: model:ir.model,name:maxcam_fleet.model_fleet_vehicle
+msgid "Vehicle"
+msgstr "Vehículo"

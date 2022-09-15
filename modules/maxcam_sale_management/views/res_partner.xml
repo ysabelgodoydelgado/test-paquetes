@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_partner_credit_form" model="ir.ui.view">
+            <field name="name">credit limit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <div class="o_address_format" position="after">
+                    <field name="credit_limit" widget="monetary" options="{'currency_field': 'currency_id'}"
+                           required="1"/>
+                </div>
+
+                <xpath expr="//page[@name='sales_purchases']/group/group[@name='sale']" position="inside">
+                    <field name="customer"/>
+                </xpath>
+
+                <xpath expr="//page[@name='sales_purchases']/group/group[@name='purchase']" position="inside">
+                    <field name="supplier"/>
+                </xpath>
+
+                <!-- campos requeridos -->
+                <xpath expr="//field[@name='city']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="delivery_view_partner_property_form_maxcam" model="ir.ui.view">
+            <field name="name">res.partner.carrier.property.form.delivery.inherit.maxcam</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="delivery.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <!-- metodo de envio -->
+                <xpath expr="//field[@name='property_delivery_carrier_id']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_partner_property_form_maxcam" model="ir.ui.view">
+            <field name="name">res.partner.product.property.form.inherit.maxcam</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="product.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='property_product_pricelist']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="ir_cron_auto_set_delivery_free" model="ir.cron">
+            <field name="name">Flete Gratis</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="False"/>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="code">model._cron_execute_delivery_free()</field>
+            <field name="state">code</field>
+        </record>
+
+    </data>
+</odoo>

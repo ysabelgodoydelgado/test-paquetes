@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!--<record id="workstation_seller" model="hr.job">
+          <field name="name">Vendedor</field>
+        </record>-->
+
+        <!--<record id="workstation_dispatcher" model="hr.job">
+          <field name="name">Despachador</field>
+        </record>-->
+
+        <record id="workstation_driver" model="hr.job">
+          <field name="name">Chofer</field>
+        </record>
+
+    </data>
+</odoo>

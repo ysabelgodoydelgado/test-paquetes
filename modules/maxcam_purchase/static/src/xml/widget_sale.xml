@@ -1,0 +1,7 @@
+<templates>
+    <div t-name="maxcam_purchase.historySales">
+        <div t-att-class="widget.data.product_id.id == null ? 'invisible' : ''">
+            <a tabindex="0" t-attf-class="fa fa-area-chart"/>
+        </div>
+    </div>
+</templates>

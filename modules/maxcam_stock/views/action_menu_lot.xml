@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    	<!--<record id="update_price_rate_group_id" model="res.groups">
+    		<field name="name">Actualizar precio por tasas</field>
+    		<field name="category_id" ref="base.module_category_sales_management"/>
+		</record>-->
+
+        <!--<record id="server_action_rate" model="ir.actions.server">
+			  <field name="name">Actualizar precio por tasa</field>
+			  <field name="condition">True</field>
+			  <field name="type">ir.actions.server</field>
+			  <field name="model_id" ref="product.model_product_template" />
+			  <field name="binding_model_id" ref="product.model_product_template"/>
+			  <field name="state">code</field>
+			  <field name="code">
+				if records:
+					action = records.get_filtered_record_rate()
+			  </field>
+		</record>-->
+		<record id="server_action_percentage" model="ir.actions.server">
+			  <field name="name">Actualizar Costos</field>
+			 
+			  <!--<field name="type">ir.actions.server</field>-->
+			  <field name="model_id" ref="product.model_product_template" />
+			  <field name="binding_model_id" ref="product.model_product_template"/>
+			  <field name="state">code</field>
+			  <field name="code">
+				if records:
+					action = records.get_filtered_record_percentage()
+			  </field>
+		</record>
+
+ 		<record id="view_update_price_percentage_venfood_form_5" model="ir.ui.view">
+	        <field name="name">Ajuste de Costos</field>
+	        <field name="model">update_price_lot</field>
+	        <field name="arch" type="xml">
+	            <form string="Ajuste de Costos" create="false" edit="false" delete="false">
+	                   	<group>
+	                   		<field name="id" invisible="1"/>
+	                   		<field name="create_uid" string="Creado por" attrs="{'invisible':[('id','=', False)]}"/>
+							<field name="update_type"  />
+							<field name="percent" widget="percentage" attrs="{'invisible':[('update_type','!=','percent')]}"/>
+							<field name="fixed_cost" attrs="{'invisible':[('update_type','!=', 'fixed')]}"/>
+						</group>
+	                       	<field name="lines" readonly="0"  force_save="1" widget="one2many" nolabel="1" >
+                                <tree delete="true" editable="true" create="false">
+									<field name="update_type" invisible="1"/>
+									<field name="update_price_parent" invisible="1"/>
+                                    <field name="product_id" readonly="1" force_save="1"/>
+									<field name="alternate_code"/>
+                                    <field name="cost" readonly="1" force_save="1"/>
+                                    <field name="new_cost" attrs="{'readonly':[('update_type','in',['fixed','percent'])]}"/>
+                                </tree>
+                            </field>
+	                        
+	                    
+	            <footer attrs="{'invisible':[('id','!=', False)]}"> 
+	           		<button name="process" type="object" string="Actualizar" /><!--confirm="¿Esta seguro que quiere realizar la actualización de precios?"--> 
+
+	           	</footer>
+	            
+	            </form>
+	         
+	            
+	        </field>
+	    </record>
+    </data>
+</odoo>

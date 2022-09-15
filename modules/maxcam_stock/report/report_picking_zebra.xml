@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--<template id="report_simple_tag">
+            <div class="container">
+                <div class="row border border-dark">
+                    <div class="col-7 mt-2">
+                        <p>Fecha:
+                            <span t-field="picking.scheduled_date"/>
+                        </p>
+                        <p>
+                            <strong>Cliente:</strong>
+                        </p>
+                    </div>
+                    <div class="col-5 text-center mt-2">
+                        <span t-field="picking.company_id.logo"
+                              t-options="{'widget': 'image', 'style': 'max-width: 140px'}"
+                              role="img" t-att-aria-label="'Logo of %s' % picking.company_id.name"
+                              t-att-title="picking.company_id.name"/>
+                    </div>
+                </div>
+                <div class="row border border-dark">
+                    <div class="col-12 text-center mt-2 mb-2 ">
+                        <p t-field="picking.partner_id" class="h5"/>
+                    </div>
+                </div>
+                <div class="row font-weight-bold border-right border-left">
+                    <div class="col-4 text-center">
+                        <span class="align-middle">#SALIDA</span>
+                    </div>
+                    <div class="col-8 border-bottom text-center">
+                        <span t-field="picking.name" class="h2"/>
+                    </div>
+                </div>
+                <div class="row border-right border-left">
+                    <div class="col-6">
+                        <p>Vendedor:
+                            <span t-field="picking.seller_id"/>
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <p>Zona:
+                            <span class="text-center" t-field="picking.partner_id.city"/>
+                        </p>
+                    </div>
+                </div>
+                <div class="row font-weight-bold border-right border-left">
+                    <div class="col-12 text-center">
+                        <p>Bulto <span t-esc="item"/> /
+                            <t t-if="picking.qty_packages_dispatch_total == 0">
+                                <t t-set="qty_packages_dispatch_total" t-value="1"/>
+                            </t>
+                            <t t-else="">
+                                <t t-set="qty_packages_dispatch_total" t-value="picking.qty_packages_dispatch_total"/>
+                            </t>
+                            <span t-esc="qty_packages_dispatch_total"/>
+                        </p>
+                    </div>
+                </div>
+                <div class="row border border-dark" style="font-size: 0.8rem;">
+                    <div class="col-12">
+                        <p><span>Preparador/Chequeador:</span> <span t-field="picking.note"/></p>
+                    </div>
+                </div>
+            </div>
+        </template>-->
+        <template id="report_simple_tag">
+            <div class="container">
+                <div class="row border border-dark">
+                    <div class="col-7 mt-2">
+                        <p>Fecha:
+                            <!--<span t-field="picking.scheduled_date"/>-->
+                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%Y %H:%M')"/>
+                        </p>
+                        <!--<p>
+                            <strong>Cliente:</strong>
+                        </p>-->
+                        
+                    </div>
+                    <div class="col-5 text-center mt-2">
+                        <span t-field="picking.company_id.logo" t-options="{'widget': 'image', 'style': 'max-width: 135px'}" role="img" t-att-aria-label="'Logo of %s' % picking.company_id.name" t-att-title="picking.company_id.name"/>
+                    </div>
+                </div>
+                <div class="row border border-dark">
+                    <div class="col-12 text-center mt-2 mb-2 " style="height:2.5rem !important">
+                        <p t-field="picking.partner_id" class="h5"/>
+                    </div>
+                </div>
+                <div class="row font-weight-bold border-right border-left">
+                    <div class="col-4 text-center">
+                        <span class="align-middle">#SALIDA</span>
+                    </div>
+                    <div class="col-8 border-bottom text-center">
+                        <span t-field="picking.name" class="h2"/>
+                    </div>
+                </div>
+                <div class="row ">
+                      <div class="col-12" style="font-size:1.3rem">
+                        <p>Vendedor:
+                            <span t-field="picking.seller_id"/>
+                        </p>
+                      </div>
+                </div>
+                 <div class="row">
+                      
+                      <div class="col-12" style="font-size:1.3rem">
+                        <p>Zona:
+                            <span class="text-center" t-field="picking.partner_id.city"/>
+                        </p>
+                    </div>
+                </div>
+                <!--<div class="row border-right border-left" style="font-size:1rem">
+                    <div class="col-12">
+                        
+                    </div>
+                </div>-->
+                <div class="row font-weight-bold border-right border-left" style="font-size:1.3rem">
+                    <div class="col-12 text-center">
+                        <p>Bulto <span t-esc="item"/> /
+                            <t t-if="picking.qty_packages_dispatch_total == 0">
+                                <t t-set="qty_packages_dispatch_total" t-value="1"/>
+                            </t>
+                            <t t-else="">
+                                <t t-set="qty_packages_dispatch_total" t-value="picking.qty_packages_dispatch_total"/>
+                            </t>
+                            <span t-esc="qty_packages_dispatch_total"/>
+                        </p>
+                    </div>
+                </div>
+                <div class="row border border-dark" style="font-size: 0.8rem;">
+                    <div class="col-12">
+                        <p><span>Preparador/Chequeador:</span> <span t-field="picking.note"/></p>
+                    </div>
+                    <!--<div class="col-6">
+                        <p>Prep:
+                            <span t-field="picking.write_uid"/>
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <p>Check:
+                            <span t-field="picking.write_uid"/>
+                        </p>
+                    </div>-->
+
+                </div>
+            </div>
+        </template>
+
+        <template id="zebra_report_tags">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="picking">
+                    <t t-call="web.basic_layout">
+                        <t t-set="existing_pack" t-value="picking.qty_packages_dispatch_total + 1"/>
+                        <t t-set="loop_pack" t-value="range(1, existing_pack)"/>
+                        <t t-foreach="loop_pack" t-as="item">
+                            <div class="page">
+                                <t t-call="maxcam_stock.report_simple_tag">
+                                    <t t-raw="0"/>
+                                </t>
+                            </div>
+                            <p style="page-break-after:always"/>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

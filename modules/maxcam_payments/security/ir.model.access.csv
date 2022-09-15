@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_maxcam_payments,Payment Approval,model_payment_approval,,1,1,1,1
+access_maxcam_payments_line,Payment Approval Line,model_payment_approval_line,,1,1,1,1
+access_maxcam_payment_approval_methods,Payment Payment Methods,model_payment_approval_methods,,1,1,1,1
+access_maxcam_payment_retention_register,Retention Register,model_retention_register,,1,1,1,1

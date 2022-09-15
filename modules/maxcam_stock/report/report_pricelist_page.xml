@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Add  fields referencia interna, y otra el código alterno -->
+        <template id="report_report_pricelist_page_maxcam" inherit_id="product.report_pricelist_page">
+            <xpath expr="//table/thead/tr/t[@t-foreach='quantities']" position="before">
+                <th class="text-left">Referencia interna</th>
+                <th class="text-left">Código alterno</th>
+            </xpath>
+            <xpath expr="//table/tbody/t/tr/t[@t-foreach='quantities'][1]" position="before">
+                <td class="text-left">
+                    <t t-esc="product['default_code']"/>
+                </td>
+                <td class="text-left">
+                    <t t-esc="product['alternate_code']"/>
+                </td>
+            </xpath>
+            <xpath expr="//table/tbody/t/t/tr/t[@t-foreach='quantities']" position="before">
+                <td class="text-left">
+                    <t t-esc="product['default_code']"/>
+                </td>
+                <td class="text-left">
+                    <t t-esc="product['alternate_code']"/>
+                </td>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

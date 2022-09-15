@@ -1,0 +1,160 @@
+<odoo>
+	<data>
+		<!-- explicit list view definition -->
+		<record model="ir.ui.view" id="maxcam_payments.list">
+			<field name="name">maxcam_payments list</field>
+			<field name="model">payment.approval</field>
+			<field name="arch" type="xml">
+				<tree>
+					<!--<field name="name"/>-->
+					<field name="id" />
+					<field name="seller_id" />
+					<field name="partner_id"/>
+					<field name="amount"/>
+					<!--<field name="journal_id" />-->
+					<field name="state" widget="badge"/>
+					<field name="checked" />
+					<field name="create_date" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_maxcam_approval_form" model="ir.ui.view">
+			<field name="name">maxcam_payments.approval.form</field>
+			<field name="model">payment.approval</field>
+			<field name="arch" type="xml">
+				<form string="Pagos">
+					<header>
+						<!-- Post -->
+						<button name="process_payment_batch" string="Procesar" class="oe_highlight"
+							type="object" attrs="{'invisible':[('state','not in',['draft'])]}">							
+						</button>
+						<button string="Cancelar" name="cancel_payment" type="object" class="oe_highlight"  attrs="{'invisible':[('state','in',['cancel'])]}"/>
+						<field name="state" widget="statusbar" statusbar_colors='{"draft":"red","process":"blue"}'/>
+					</header>
+										
+					<sheet>
+						<group>
+							<!--<field name="name" string="Nombre" attrs="{'readonly':[('state','=','process')]}"/>-->
+							<field name="checked" />
+							<field name="partner_id" string="Cliente" attrs="{'readonly':[('state','=','process')]}"/>
+							<field name="seller_id" attrs="{'readonly':[('state','=','process')]}"/>
+						</group>
+						<group>
+							<field name="amount" string="Monto" attrs="{'readonly':[('state','=','process')]}"/>
+							<field name="amount_compute" invisible="1" />
+							<!--<field name="journal_id" string="Diario"/>-->
+						</group>
+						<notebook>
+							<page name="approval_lines" string="Lineas de pagos">
+								<field name="payment_approval_line" attrs="{'readonly':[('state','=','process')]}">
+									<tree name="approbal_lines_tree">
+										<field name="name" string="Nombre"/>
+										<field name="invoice_id" string="Factura"/>
+										<field name="partner_id" />
+										<field name="amount" string="Monto"/>
+										<field name="journal_id" string="Diario"/>
+										<field name="reference" />
+										<field name="holder" />
+										<!--<field name="transfer_number" string="Numero Transferencia"/>-->
+										<field name="amount_residual" string="Residual"/>
+										<field name="payment_related" />
+										<field name="use_balance" />
+										<field name="amount_balance_use" />
+										<field name="currency_id" invisible="1"/>
+										<field name="foreign_payment_currency_id" invisible="1" />
+										<field name="invoice_number" />
+										<field name="subtotal" />
+										<field name="iva" />
+										<field name="total_invoice" />
+										<field name="total_retention" />
+										<!--<field name="foreign_payment_currency_rate" />-->
+									</tree>
+								</field>
+							</page>
+							<page name="payment_approval_methods_page" string="Metodos de pago">
+								<field name="payment_approval_methods" attrs="{'readonly':[('state','=','process')]}">
+									<tree name="methods_lines_tree" editable="top" create="1" delete="1" multi_edit="1">
+										<field name="journal_id"/>
+										<field name="amount" />
+										<!--<field name="amount_compute" />-->
+										<field name="currency_id" invisible="1" />
+									</tree>
+								</field>
+							</page>
+						</notebook>
+						</sheet>
+						<div class="oe_chatter">
+							<field name="message_follower_ids"/>
+							<field name="activity_ids"/>
+							<field name="message_ids"/>
+						</div>
+				</form>
+			</field>
+		</record>
+
+        <record id="view_maxcam_payments_filter" model="ir.ui.view">
+            <field name="name">maxcam_payments.approval.search</field>
+            <field name="model">payment.approval</field>
+            <field name="arch" type="xml">
+                <search string="Maxcam Pagos">
+
+					<field name="name"/>
+					<field name="seller_id" />
+					<field name="partner_id"/>
+					<field name="amount"/>
+				<!--	<field name="journal_id" />-->
+					<field name="state" />
+
+                    <filter string="Borrador" name="draft" domain="[('state','=','draft')]"/>
+					<filter string="Procesado" name="process" domain="[('state','=','process')]"/>
+                    <group expand="0" string="Agrupar por">
+                        <filter string="Vendedor" name="groupby_seller" domain="[]" context="{'group_by': 'seller_id'}"/>
+                        <filter string="Cliente" name="groupby_partner_id" domain="[]" context="{'group_by': 'partner_id'}"/>
+						<filter string="Estado" name="groupby_state" domain="[]" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+		<!-- actions opening views on models -->
+		<record model="ir.actions.act_window" id="maxcam_payments.action_window_pagos">
+			<field name="name">Pagos Maxcam</field>
+			<field name="res_model">payment.approval</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<!-- Top menu item -->
+		<menuitem name="Pagos Maxcam" id="maxcam_payments.menu_root" web_icon="maxcam_payments,static/src/img/maxcam_pagos.png"/>
+		<!-- menu categories -->
+		<menuitem name="Pagos Maxcam" id="maxcam_payments.payments_maxcam" parent="maxcam_payments.menu_root" action="action_window_pagos"/>
+
+		<record model="ir.ui.view" id="maxcam_payments.lines">
+			<field name="name">maxcam lines list</field>
+			<field name="model">payment.approval.line</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name"/>
+					<field name="invoice_id" />
+					<field name="reference" />
+					<field name="amount"/>
+					<field name="journal_id" />
+					<field name="payment_related" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="maxcam_payments.lines_methods">
+			<field name="name">maxcam methods lineas</field>
+			<field name="model">payment.approval.methods</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="journal_id"/>
+					<field name="amount_compute" />
+					<field name="amount" />
+					<field name="currency_id" invisible="1" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</odoo>

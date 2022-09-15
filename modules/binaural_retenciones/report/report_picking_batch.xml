@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Add a shortcut to wishlist / talks after registration -->
+        <template id="report_picking_batch_related_invoice" inherit_id="stock_picking_batch.report_picking_batch">
+            <!-- Add Nro Invoice -->
+            <xpath expr="//table[hasclass('table-condensed')][1]/thead/tr/th[2]" position="after">
+                <th>Nro Invoice</th>
+            </xpath>
+            <xpath expr="//table[hasclass('table-condensed')][1]/tbody/tr/td[2]" position="after">
+                <td>
+                    <span t-field="pick.invoice_ids"/>
+                </td>
+            </xpath>
+
+        </template>
+
+    </data>
+</odoo>

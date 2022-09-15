@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="maxcam_deposit_payments_list">
+            <field name="name">Depósito de los pagos</field>
+            <field name="model">deposit.payment</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="journal_id" />
+                    <field name="date" widget="date"/>
+                    <field name="amount"/>
+                    <field name="currency_id"/>
+                    <field name="move_id" />
+                    <field name="state" widget="badge"/>
+                    <field name="seller_id" />
+
+                </tree>
+            </field>
+        </record>
+        <record id="view_maxcam_deposit_filter" model="ir.ui.view">
+            <field name="name">deposits.payment.search</field>
+            <field name="model">deposit.payment</field>
+            <field name="arch" type="xml">
+                <search string="Maxcam Depositos">
+
+					<field name="name"/>
+                    <field name="journal_id" />
+                    <field name="date" widget="date"/>
+                    <field name="amount"/>
+                    <field name="currency_id"/>
+                    <field name="move_id" />
+                    <field name="state" />
+                    <field name="seller_id" />
+
+                    <filter string="Borrador" name="draft" domain="[('state','=','draft')]"/>
+					<filter string="Confirmados" name="confirmed" domain="[('state','=','confirmed')]"/>
+                    <filter string="Realizados" name="done" domain="[('state','=','done')]"/>
+                    <filter string="Cancelado" name="cancel" domain="[('state','=','cancel')]"/>
+                    <group expand="0" string="Agrupar por">
+                        <filter string="Vendedor" name="groupby_seller" domain="[]" context="{'group_by': 'seller_id'}"/>
+                        <filter string="Fecha" name="groupby_date" domain="[]" context="{'group_by': 'date'}"/>
+						<filter string="Estado" name="groupby_state" domain="[]" context="{'group_by': 'state'}"/>
+                        <filter string="Diario" name="groupby_journal" domain="[]" context="{'group_by': 'journal_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- form -->
+        <record id="maxcam_deposit_payments_form" model="ir.ui.view">
+            <field name="name">Registro Depósito</field>
+            <field name="model">deposit.payment</field>
+            <field name="arch" type="xml">
+                <form string="Depósito">
+                    <header>
+                        <button name="processs_deposit" string="Procesar" class="oe_highlight"
+							type="object" attrs="{'invisible':[('state','not in',['draft'])]}">							
+						</button>
+                        <button name="make_done" string="Marcar como conciliado" class="oe_highlight"
+							type="object" attrs="{'invisible':[('state','not in',['confirmed'])]}">							
+						</button>
+                        
+                        <button name="cancel_deposit" string="Cancelar" class="oe_highlight"
+							type="object" attrs="{'invisible':[('state','in',['done','cancel'])]}">	
+                        </button>	
+                        
+                        <button name="remove_done" string="Remover conciliacion" class="oe_highlight"
+							type="object" attrs="{'invisible':[('state','not in',['done'])]}">						
+						</button>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done,cancel"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="seller_id"/>
+                                <!--<field name="partner_id" domain="[('seller_id', '=', seller_id)]"
+                                       attrs="{'invisible': [('seller_id','=', False)]}"/>-->
+                                <field name="date" widget="date"/>
+                                <field name="journal_id" />
+                            </group>
+                            <group>
+                                <field name="amount"/>
+                                <field name="currency_id"/>
+                                <field name="move_id" />
+                                <field name="attachment_ids" widget="many2many_binary"/>
+
+                            </group>
+                        </group>
+                        <notebook attrs="{'invisible':[('seller_id','=',False)]}">
+                            <!--<page name="pago" string="Pagos">
+                                <field name="payment_ids" widget="many2many" domain="[
+                                ('state', '=', 'posted'), ('seller_id', '=', seller_id)]"/>
+                            </page>
+                            <page name="invoice" string="Facturas">
+                                <field name="invoice_ids" widget="many2many" domain="[('state', '=', 'posted'),
+                                ('payment_state', 'in', ['partial', 'paid']), ('move_type', '=', 'out_invoice')]"/>
+                            </page>
+                            <page name="Recibos" string="Recibos">
+                                <field name="payment_approval_ids" widget="many2many" />
+                            </page>-->
+                            <page name="Lineas de Recibos" string="Recibos">
+                                <field name="payment_approval_lines_ids" widget="many2many" >
+                                    <tree name="approbal_lines_tree_dep">
+                                        <field name="name"/>
+                                        <field name="partner_id" />
+                                        <field name="invoice_id" />
+                                        <field name="reference" />
+                                        <!--<field name="transfer_number"/>-->
+                                        <field name="amount"/>
+                                        <field name="journal_id" />
+                                        <field name="payment_related" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="maxcam_deposit_payments_action_window">
+            <field name="name">Depositos</field>
+            <field name="res_model">deposit.payment</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Top menu item -->
+        <menuitem name="Depósito" id="maxcam_deposit_payments.menu_root"
+                  action="maxcam_deposit_payments_action_window" web_icon="maxcam_deposit_payments,static/src/img/deposito.jpeg"/>
+        <!-- menu categories -->
+        <!--<menuitem name="Menu 1" id="maxcam_deposit_payments.menu_1" parent="maxcam_deposit_payments.menu_root"/>-->
+        <!-- actions -->
+
+    </data>
+</odoo>

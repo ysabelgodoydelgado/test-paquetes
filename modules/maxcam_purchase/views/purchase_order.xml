@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+
+        <record id="purchase_order_form_inherit_maxcam" model="ir.ui.view">
+            <field name="name">purchase.order.form.inherit.maxcam</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='products']/field[@name='order_line']/tree/field[@name='name']" position="after">
+                    <field name="alternate_code"/>
+                    <!--<button class="oe_stat_button" name="action_open_wizard_solds" icon="fa-area-chart" type="object" readonly="0" priority="50"/>-->
+                    
+                    <widget name="history_sales_widget" width="20px"/>
+                
+                </xpath>
+            </field>
+        </record>
+        <template id="purchase_order_line_view_list" name="purchase.order.line.view.list" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/maxcam_purchase/static/src/js/widget_sale.js"></script>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,72 @@
+<odoo>
+    <data>
+
+        <record id="view_stock_picking_batch_inh" model="ir.ui.view">
+            <field name="name">stock.picking.batch.inherit</field>
+            <field name="model">stock.picking.batch</field>
+            <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
+            <field name="arch" type="xml">
+                <!--agegar nuevos campos-->
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="fleet2_id" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                    <field name="driver_id" attrs="{'readonly':[('state', '!=', 'draft')]}" options="{'no_create':1}"/>
+                </xpath>
+                <!--agregar totales al final-->
+                <xpath expr="//field[@name='picking_ids']" position="after">
+                    <group>
+                        <group>
+                            <label for="qty_partners"/>
+                            <div>
+                                <field name="qty_partners" string="Total de clientes" readonly="1" force_save="1"/>
+                            </div>
+
+
+                            <!--<label for="qty_products"/>
+                            <div>
+                                <field name="qty_products" class="oe_inline" string="Cantidad de productos" readonly="1" force_save="1"/>
+                            </div>-->
+
+                            <field name="currency_id" invisible="1"/>
+                            <field name="total_invoice" readonly="1" force_save="1" widget='monetary'
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <field name="is_confirmed" invisible="1"/>
+
+                        </group>
+                    </group>
+                </xpath>
+
+
+                <!--Hacer lista de pickings editable, no recomendado ya que es mejor abrir el picking para escribir la cantidad de paquetes en cada factura-->
+                <xpath expr="//field[@name='picking_ids']/tree" position="replace">
+                        <tree editable="top">
+                            <field name="name"/>
+                            <field name="scheduled_date"/>
+                            <field name="partner_id"/>
+                            <field name="date_reception_client" />
+                            <field name="qty_packages_dispatch_total"/>
+
+                            <field name="currency_id" invisible="1"/>
+                            <field name="invoices_total_amount" decoration-bf="1" readonly="1" force_save="1" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                            <field name="location_id"/>
+                            <field name="backorder_id"/>
+                            <field name="origin"/>
+                            <field name="state"/>
+                            <field name="company_id" invisible="1"/>
+                        </tree>
+                </xpath>
+
+
+                <!--<xpath expr="//field[@name='picking_ids']/tree/field[@name='scheduled_date']" position="after">
+                    <field name="partner_id" string="Cliente"/>
+                    <field name="date_reception_client"/>
+                    <field name="qty_packages_dispatch_total"/>
+                    &lt;!&ndash;<field name="invoice_rel"/>&ndash;&gt;
+                    <field name="currency_id" invisible="1"/>
+                    <field name="invoices_total_amount" decoration-bf="1" readonly="1" force_save="1" widget='monetary'
+                           options="{'currency_field': 'currency_id'}"/>
+                </xpath>-->
+            </field>
+        </record>
+
+    </data>
+</odoo>

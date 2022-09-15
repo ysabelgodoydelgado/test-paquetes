@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<record id="paperformat_catalog" model="report.paperformat">
+        <field name="name">European A4 low margin</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">35</field>
+        <field name="margin_bottom">19</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+    <report
+        id="action_report_product_catalog"
+        string="Imprimir Catálogo"
+        model="product.template"
+        report_type="qweb-pdf"
+        name="deltatech_product_catalog.report_product_catalog"
+        file="deltatech_product_catalog.report_product_catalog"
+        paperformat="deltatech_product_catalog.paperformat_catalog"
+    />
+    <report
+        id="action_report_product_category_catalog"
+        string="Imprimir Catálogo"
+        model="product.public.category"
+        report_type="qweb-pdf"
+        name="deltatech_product_catalog.report_category_catalog"
+        file="deltatech_product_catalog.report_category_catalog"
+        paperformat="deltatech_product_catalog.paperformat_catalog"
+    />
+    
+</odoo>
